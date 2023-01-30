@@ -4,7 +4,7 @@ import math
 
 BP = brickpi3.BrickPi3()
 
-r = 4.5
+r = 5.5
 def go_straight(v):
     global r
     dps = v / (r*math.pi) * 360
