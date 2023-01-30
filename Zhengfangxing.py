@@ -45,7 +45,7 @@ def rot(degree, timing):
         if time.time() - start >= timing:
             break
         time.sleep(0.02)
-
+#jdwio
 def curve(distance, degree, timing):
     start = time.time()
     while True:
