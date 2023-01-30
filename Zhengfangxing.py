@@ -8,10 +8,13 @@ r = 5.5
 def go_straight(v):
     global r
     dps = v / (r*math.pi) * 360
-    BP.set_motor_dps(BP.PORT_B, dps)
+    return dps, dps
+    dps1 = BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, dps)
 
 def rotate(dps):
+    ans = dps*12/5
+    return ans, -ans
     BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, -dps)
 
@@ -21,35 +24,55 @@ def rotate(dps):
 # except IOError as error:
 #     print(error)
 
-def go_40():
+def go(distance, timing):
     start = time.time()
     while True:
-        v = 10
-        time_need = 40/v
-        go_straight(v)
-        if time.time() - start >= time_need:
+        speed = distance/timing
+        dps1, dps2 = go_straight(speed)
+        BP.set_motor_dps(BP.PORT_B, dps1)
+        BP.set_motor_dps(BP.PORT_D, dps2)
+        if time.time() - start >= timing:
             break
         time.sleep(0.02)
 
-def rot_90():
+def rot(degree, timing):
     start = time.time()
     while True:
-        v = 30
-        time_need = 90/v
-        rotate(v*12/5)
-        if time.time() - start >= time_need:
+        velocity = degree/timing
+        dps1, dps2 = rotate(velocity)
+        BP.set_motor_dps(BP.PORT_B, dps1)
+        BP.set_motor_dps(BP.PORT_D, dps2)
+        if time.time() - start >= timing:
             break
         time.sleep(0.02)
+
+def curve(distance, degree, timing):
+    start = time.time()
+    while True:
+        speed = distance/timing
+        velocity = degree/timing
+        dps11, dps12 = rotate(speed)
+        dps21, dps22 = rotate(velocity)
+        BP.set_motor_dps(BP.PORT_B, dps11+dps21)
+        BP.set_motor_dps(BP.PORT_D, dps12+dps22)
+        if time.time() - start >= timing:
+            break
+        time.sleep(0.02)
+
+# try:
+#     go(40,3)
+#     rot(90,3)
+#     go(40,3)
+#     rot(90,3)
+#     go(40,3)
+#     rot(90,3)
+#     go(40,3)
+#     rot(90,3)
+# except:
+#     print('error')
 
 try:
-    go_40()
-    rot_90()
-    go_40()
-    rot_90()
-    go_40()
-    rot_90()
-    go_40()
-    rot_90()
+    curve(200, 360, 15)
 except:
     print('error')
 
