@@ -4,7 +4,7 @@ import math
 
 BP = brickpi3.BrickPi3()
 
-r = 5
+r = 4.5
 def go_straight(v):
     global r
     dps = v / (r*math.pi) * 360
@@ -22,39 +22,36 @@ def rotate(dps):
 #     print(error)
 
 def go_40():
-    try:
-        start = time.time()
-        while True:
-            v = 10
-            time_need = 40/v
-            go_straight(v)
-            if time.time() - start >= time_need:
-                break
-            time.sleep(0.02)
-    except:
-        print('error')
+    start = time.time()
+    while True:
+        v = 10
+        time_need = 40/v
+        go_straight(v)
+        if time.time() - start >= time_need:
+            break
+        time.sleep(0.02)
 
 def rot_90():
-    try:
-        start = time.time()
-        while True:
-            v = 30
-            time_need = 90/v
-            rotate(v*12/5)
-            if time.time() - start >= time_need:
-                break
-            time.sleep(0.02)
-    except:
-        print('error')
+    start = time.time()
+    while True:
+        v = 30
+        time_need = 90/v
+        rotate(v*12/5)
+        if time.time() - start >= time_need:
+            break
+        time.sleep(0.02)
 
-go_40()
-rot_90()
-go_40()
-rot_90()
-go_40()
-rot_90()
-go_40()
-rot_90()
+try:
+    go_40()
+    rot_90()
+    go_40()
+    rot_90()
+    go_40()
+    rot_90()
+    go_40()
+    rot_90()
+except:
+    print('error')
 
 # BP.set_motor_position(BP.PORT_B,-800)
 # BP.set_motor_position(BP.PORT_D,-800)
