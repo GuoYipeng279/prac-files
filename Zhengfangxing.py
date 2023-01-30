@@ -36,9 +36,9 @@ def rotate(dps):
 try:
     start = time.time()
     while True:
-        v = 10*12/5
+        v = 30
         time_need = 90/v
-        rotate(v)
+        rotate(v*12/5)
         if time.time() - start >= time_need:
             break
         time.sleep(0.02)
