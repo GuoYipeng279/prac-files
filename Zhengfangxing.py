@@ -72,14 +72,14 @@ def curve(distance, degree, timing):
 #     print('error')
 
 try:
-    curve(200, 100, 15)
-    curve(200, -100, 15)
-    curve(200, 100, 15)
-    curve(200, -100, 15)
-    curve(200, 100, 15)
-    curve(200, -100, 15)
-    curve(200, 100, 15)
-    curve(200, -100, 15)
+    curve(50, 100, 6)
+    curve(50, -100, 6)
+    curve(50, 100, 6)
+    curve(50, -100, 6)
+    curve(50, 100, 6)
+    curve(50, -100, 6)
+    curve(50, 100, 6)
+    curve(50, -100, 6)
 except:
     print('error')
 
