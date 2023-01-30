@@ -51,7 +51,7 @@ def curve(distance, degree, timing):
     while True:
         speed = distance/timing
         velocity = degree/timing
-        dps11, dps12 = rotate(speed)
+        dps11, dps12 = go(speed)
         dps21, dps22 = rotate(velocity)
         BP.set_motor_dps(BP.PORT_B, dps11+dps21)
         BP.set_motor_dps(BP.PORT_D, dps12+dps22)
