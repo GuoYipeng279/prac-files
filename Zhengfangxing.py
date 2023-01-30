@@ -12,8 +12,8 @@ def go_straight(v):
     BP.set_motor_dps(BP.PORT_D, dps)
 
 def rotate(dps):
-    BP.set_motor_dps(BP.set_motor_dps(BP.PORT_B, dps))
-    BP.set_motor_dps(BP.set_motor_dps(BP.PORT_D, -dps))
+    BP.set_motor_dps(BP.PORT_B, dps)
+    BP.set_motor_dps(BP.PORT_D, -dps)
 
 # try:
 #     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
