@@ -59,29 +59,29 @@ def curve(distance, degree, timing):
             break
         time.sleep(0.02)
 
-# try:
-#     go(40,3)
-#     rot(90,3)
-#     go(40,3)
-#     rot(90,3)
-#     go(40,3)
-#     rot(90,3)
-#     go(40,3)
-#     rot(90,3)
-# except:
-#     print('error')
-
 try:
-    curve(50, 100, 6)
-    curve(50, -100, 6)
-    curve(50, 100, 6)
-    curve(50, -100, 6)
-    curve(50, 100, 6)
-    curve(50, -100, 6)
-    curve(50, 100, 6)
-    curve(50, -100, 6)
+    go(40,3)
+    rot(90,3)
+    go(40,3)
+    rot(90,3)
+    go(40,3)
+    rot(90,3)
+    go(40,3)
+    rot(90,3)
 except:
     print('error')
+
+# try:
+#     curve(50, 100, 6)
+#     curve(50, -100, 6)
+#     curve(50, 100, 6)
+#     curve(50, -100, 6)
+#     curve(50, 100, 6)
+#     curve(50, -100, 6)
+#     curve(50, 100, 6)
+#     curve(50, -100, 6)
+# except:
+#     print('error')
 
 # BP.set_motor_position(BP.PORT_B,-800)
 # BP.set_motor_position(BP.PORT_D,-800)
