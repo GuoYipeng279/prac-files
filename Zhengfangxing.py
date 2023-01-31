@@ -69,13 +69,13 @@ def curve(distance, degree, timing):
 
 try:
     go(40, 3)
-    rot(115, 3)
+    rot(110, 3)
     go(40, 3)
-    rot(115, 3)
+    rot(110, 3)
     go(40, 3)
-    rot(115, 3)
+    rot(110, 3)
     go(40, 3)
-    rot(115, 3)
+    rot(110, 3)
 except:
     print('error')
 
