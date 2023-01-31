@@ -1,16 +1,19 @@
 import brickpi3
-import time 
+import time
 import math
 
 BP = brickpi3.BrickPi3()
 
 r = 5.5
+
+
 def go_straight(v):
     global r
     dps = v / (r*math.pi) * 360
     return dps, dps
     dps1 = BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, dps)
+
 
 def rotate(dps):
     ans = dps*12/5
@@ -24,6 +27,7 @@ def rotate(dps):
 # except IOError as error:
 #     print(error)
 
+
 def go(distance, timing):
     start = time.time()
     while True:
@@ -35,6 +39,7 @@ def go(distance, timing):
             break
         time.sleep(0.02)
 
+
 def rot(degree, timing):
     start = time.time()
     while True:
@@ -45,7 +50,9 @@ def rot(degree, timing):
         if time.time() - start >= timing:
             break
         time.sleep(0.02)
-#jdwio
+# jdwio
+
+
 def curve(distance, degree, timing):
     start = time.time()
     while True:
@@ -59,15 +66,16 @@ def curve(distance, degree, timing):
             break
         time.sleep(0.02)
 
+
 try:
-    go(40,3)
-    rot(90,3)
-    go(40,3)
-    rot(90,3)
-    go(40,3)
-    rot(90,3)
-    go(40,3)
-    rot(90,3)
+    go(40, 3)
+    rot(110, 3)
+    go(40, 3)
+    rot(110, 3)
+    go(40, 3)
+    rot(110, 3)
+    go(40, 3)
+    rot(110, 3)
 except:
     print('error')
 
@@ -91,7 +99,7 @@ except:
     B=BP.get_motor_encoder(BP.PORT_B)
     D=BP.get_motor_encoder(BP.PORT_D)
     print('B position: ',B,'D position: ',D)'''
-if KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
+if KeyboardInterrupt:  # except the program gets interrupted by Ctrl+C on the keyboard.
     BP.reset_all()
 else:
     pass
