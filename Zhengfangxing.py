@@ -71,11 +71,11 @@ try:
     go(40, 3)
     rot(118, 3)
     go(40, 3)
-    rot(118, 3)
+    rot(116, 3)
     go(40, 3)
-    rot(118, 3)
+    rot(116, 3)
     go(40, 3)
-    rot(118, 3)
+    rot(116, 3)
 except:
     print('error')
 
