@@ -4,7 +4,7 @@ import math
 
 BP = brickpi3.BrickPi3()
 
-r = 5.4
+r = 5.3
 w = 15
 
 
