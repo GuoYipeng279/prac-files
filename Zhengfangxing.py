@@ -5,7 +5,7 @@ import math
 BP = brickpi3.BrickPi3()
 
 d = 5.3
-w = 17
+w = 16.5
 l = 1
 r = 1
 
@@ -72,21 +72,21 @@ def curve(distance, degree, timing):
 
 
 try:
-    go(40, 3)
-    rot(90, 3)
-    go(40, 3)
-    rot(90, 3)
-    go(40, 3)
-    rot(90, 3)
-    go(40, 3)
-    rot(90, 3)
+    go(40, 2)
+    rot(90, 2)
+    go(40, 2)
+    rot(90, 2)
+    go(40, 2)
+    rot(90, 2)
+    go(40, 2)
+    rot(90, 2)
 except:
     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
     print('error')
 
 # try:
-#     go(-40, 3)
+#     go(-40, 2)
 # except:
 #     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
 #     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
