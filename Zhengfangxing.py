@@ -10,7 +10,7 @@ w = 16
 
 def go_straight(v):
     global d
-    l = 1.2
+    l = 1
     r = 1
     dps = v / (d*math.pi) * 360
     return dps * l , dps * r
