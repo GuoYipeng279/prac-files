@@ -7,6 +7,8 @@ BP = brickpi3.BrickPi3()
 
 d = 5.3
 w = 16.5
+s = 1
+a = 2
 l = 1.03
 r = 1
 
@@ -96,13 +98,13 @@ try:
             print(3)
             left -= 100
             right -= 100
-        if inp == 's':
+        if inp == s:
             left += 100
             right += 100
-        if inp == 'a':
+        if inp == a:
             left -= 100
             right += 100
-        if inp == 'd':
+        if inp == d:
             left += 100
             right -= 100
         print(7)
