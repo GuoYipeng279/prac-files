@@ -7,7 +7,7 @@ BP = brickpi3.BrickPi3()
 
 d = 5.3
 w = 16.5
-l = 1.08
+l = 1.03
 r = 1
 
 
