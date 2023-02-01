@@ -79,6 +79,7 @@ try:
 except:
     print('error')
 
+print('nothing')
 # try:
 #     curve(50, 100, 6)
 #     curve(50, -100, 6)
