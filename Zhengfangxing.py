@@ -6,10 +6,10 @@ import keyboard
 BP = brickpi3.BrickPi3()
 
 d = 5.3
-w = 16.5
+w = 16.2
 s = 1
 a = 2
-l = 1.05
+l = 1.1
 r = 1
 
 
