@@ -7,7 +7,7 @@ BP = brickpi3.BrickPi3()
 
 d = 5.3
 w = 16.5
-l = 1.05
+l = 1.1
 r = 1
 
 
@@ -86,6 +86,8 @@ except:
     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
     print('error')
 
+# try:
+#     if keyboard.is_pressed('w'):        
 
 
 # try:
