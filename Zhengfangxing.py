@@ -74,47 +74,47 @@ def curve(distance, degree, timing):
         time.sleep(0.02)
 
 # print('something')
-# try:
-#     go(40, 3)
-#     rot(90, 3)
-#     go(40, 3)
-#     rot(90, 3)
-#     go(40, 3)
-#     rot(90, 3)
-#     go(40, 3)
-#     rot(90, 3)
-# except:
-#     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
-#     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
-#     print('error')
-
 try:
-    while True:
-        print(1)
-        left, right = 0,0
-        inp = input()
-        print(inp)
-        if inp == w:
-            print(3)
-            left -= 100
-            right -= 100
-        if inp == s:
-            left += 100
-            right += 100
-        if inp == a:
-            left -= 100
-            right += 100
-        if inp == d:
-            left += 100
-            right -= 100
-        print(7)
-        BP.set_motor_dps(BP.PORT_B, left)
-        BP.set_motor_dps(BP.PORT_D, right)
-        time.sleep(0.02)
-except Exception:
+    go(40, 3)
+    rot(90, 3)
+    go(40, 3)
+    rot(90, 3)
+    go(40, 3)
+    rot(90, 3)
+    go(40, 3)
+    rot(90, 3)
+except:
     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
-    print(Exception)
+    print('error')
+
+# try:
+#     while True:
+#         print(1)
+#         left, right = 0,0
+#         inp = input()
+#         print(inp)
+#         if inp == w:
+#             print(3)
+#             left -= 100
+#             right -= 100
+#         if inp == s:
+#             left += 100
+#             right += 100
+#         if inp == a:
+#             left -= 100
+#             right += 100
+#         if inp == d:
+#             left += 100
+#             right -= 100
+#         print(7)
+#         BP.set_motor_dps(BP.PORT_B, left)
+#         BP.set_motor_dps(BP.PORT_D, right)
+#         time.sleep(0.02)
+# except Exception:
+#     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
+#     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
+#     print(Exception)
     
 
 
