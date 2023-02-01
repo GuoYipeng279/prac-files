@@ -12,7 +12,7 @@ def go_straight(v):
     global d
     l = 1.2
     r = 1
-    dps = v / (r*math.pi) * 360
+    dps = v / (d*math.pi) * 360
     return dps * l , dps * r
     dps1 = BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, dps)
