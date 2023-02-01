@@ -4,7 +4,8 @@ import math
 
 BP = brickpi3.BrickPi3()
 
-r = 5.5
+r = 5.55
+w = 12.5
 
 
 def go_straight(v):
@@ -16,7 +17,7 @@ def go_straight(v):
 
 
 def rotate(dps):
-    ans = dps*12/5
+    ans = dps*w/r
     return ans, -ans
     BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, -dps)
@@ -68,14 +69,14 @@ def curve(distance, degree, timing):
 
 
 try:
-    go(43, 3)
-    rot(120, 3)
-    go(43, 3)
-    rot(110, 3)
-    go(43, 3)
-    rot(116, 3)
-    go(43, 3)
-    rot(116, 3)
+    go(40, 3)
+    rot(90, 3)
+    go(40, 3)
+    rot(90, 3)
+    go(40, 3)
+    rot(90, 3)
+    go(40, 3)
+    rot(90, 3)
 except:
     print('error')
 
