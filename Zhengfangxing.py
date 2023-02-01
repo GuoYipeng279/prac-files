@@ -92,7 +92,7 @@ try:
         left, right = 0,0
         inp = input()
         print(inp)
-        if inp == 'w':
+        if inp == w:
             print(3)
             left -= 100
             right -= 100
