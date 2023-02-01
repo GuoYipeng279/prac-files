@@ -5,7 +5,7 @@ import math
 BP = brickpi3.BrickPi3()
 
 d = 5.3
-w = 16
+w = 17
 l = 1
 r = 1
 
