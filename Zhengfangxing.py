@@ -91,6 +91,7 @@ try:
         print(1)
         left, right = 0,0
         inp = input()
+        print(inp)
         if inp == 'w':
             print(3)
             left -= 100
