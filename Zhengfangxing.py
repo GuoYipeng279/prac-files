@@ -70,15 +70,22 @@ def curve(distance, degree, timing):
         time.sleep(0.02)
 
 
+# try:
+#     go(40, 3)
+#     rot(90, 3)
+#     go(40, 3)
+#     rot(90, 3)
+#     go(40, 3)
+#     rot(90, 3)
+#     go(40, 3)
+#     rot(90, 3)
+# except:
+#     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
+#     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
+#     print('error')
+
 try:
-    go(40, 3)
-    rot(90, 3)
-    go(40, 3)
-    rot(90, 3)
-    go(40, 3)
-    rot(90, 3)
-    go(40, 3)
-    rot(90, 3)
+    go(-40, 3)
 except:
     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
