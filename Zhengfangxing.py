@@ -90,17 +90,18 @@ try:
     while True:
         print(1)
         left, right = 0,0
-        if keyboard.is_pressed('w'):
+        inp = input()
+        if inp == 'w':
             print(3)
             left -= 100
             right -= 100
-        if keyboard.is_pressed('s'):
+        if inp == 's':
             left += 100
             right += 100
-        if keyboard.is_pressed('a'):
+        if inp == 'a':
             left -= 100
             right += 100
-        if keyboard.is_pressed('d'):
+        if inp == 'd':
             left += 100
             right -= 100
         print(7)
