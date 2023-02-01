@@ -1,6 +1,7 @@
 import brickpi3
 import time
 import math
+import keyboard
 
 BP = brickpi3.BrickPi3()
 
@@ -70,7 +71,7 @@ def curve(distance, degree, timing):
             break
         time.sleep(0.02)
 
-print('something')
+# print('something')
 try:
     go(40, 3)
     rot(90, 3)
