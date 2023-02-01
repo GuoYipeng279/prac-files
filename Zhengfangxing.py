@@ -88,21 +88,29 @@ def curve(distance, degree, timing):
 
 try:
     while True:
+        print(1)
         left, right = 0,0
+        print(2)
         if keyboard.is_pressed('w'):
+            print(3)
             left -= 100
             right -= 100
         if keyboard.is_pressed('s'):
+            print(4)
             left += 100
             right += 100
         if keyboard.is_pressed('a'):
+            print(5)
             left -= 100
             right += 100
         if keyboard.is_pressed('d'):
+            print(6)
             left += 100
             right -= 100
+        print(7)
         BP.set_motor_dps(BP.PORT_B, left)
         BP.set_motor_dps(BP.PORT_D, right)
+        print(8)
         time.sleep(0.02)
 except Exception:
     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
