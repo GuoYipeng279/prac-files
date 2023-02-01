@@ -6,8 +6,8 @@ BP = brickpi3.BrickPi3()
 
 d = 5.3
 w = 16.5
-l = 1.3
-r = 1.3
+l = 1
+r = 1
 
 
 def go_straight(v):
