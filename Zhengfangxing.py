@@ -100,10 +100,10 @@ try:
     BP.set_motor_dps(BP.PORT_B, left)
     BP.set_motor_dps(BP.PORT_D, right)
     time.sleep(0.02)
-except:
+except Exception:
     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
-    print('error')
+    print(Exception)
     
 
 
