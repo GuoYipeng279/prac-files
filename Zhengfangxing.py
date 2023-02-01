@@ -4,20 +4,22 @@ import math
 
 BP = brickpi3.BrickPi3()
 
-r = 5.3
+d = 5.3
 w = 16
 
 
 def go_straight(v):
-    global r
+    global d
+    l = 1.2
+    r = 1
     dps = v / (r*math.pi) * 360
-    return dps, dps
+    return dps * l , dps * r
     dps1 = BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, dps)
 
 
 def rotate(dps):
-    ans = dps*w/r
+    ans = dps*w/d
     return ans, -ans
     BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, -dps)
