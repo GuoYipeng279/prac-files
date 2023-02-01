@@ -72,22 +72,39 @@ def curve(distance, degree, timing):
         time.sleep(0.02)
 
 # print('something')
+# try:
+#     go(40, 3)
+#     rot(90, 3)
+#     go(40, 3)
+#     rot(90, 3)
+#     go(40, 3)
+#     rot(90, 3)
+#     go(40, 3)
+#     rot(90, 3)
+# except:
+#     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
+#     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
+#     print('error')
+
 try:
-    go(40, 3)
-    rot(90, 3)
-    go(40, 3)
-    rot(90, 3)
-    go(40, 3)
-    rot(90, 3)
-    go(40, 3)
-    rot(90, 3)
+    left, right = 0,0
+    if keyboard.is_pressed('w'):
+        left += 100
+        right += 100
+    if keyboard.is_pressed('a'):
+        left -= 100
+        right += 100
+    if keyboard.is_pressed('d'):
+        left += 100
+        right -= 100
+    BP.set_motor_dps(BP.PORT_B, left)
+    BP.set_motor_dps(BP.PORT_D, right)
+    time.sleep(0.02)
 except:
     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
     print('error')
-
-# try:
-#     if keyboard.is_pressed('w'):        
+    
 
 
 # try:
