@@ -5,7 +5,7 @@ import math
 BP = brickpi3.BrickPi3()
 
 r = 5.25
-w = 16
+w = 18
 
 
 def go_straight(v):
