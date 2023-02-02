@@ -9,7 +9,7 @@ d = 5.3
 w = 15.0
 s = 1
 a = 2
-l = 1.03
+l = 1.05
 # l = 1
 r = 1
 
@@ -25,7 +25,7 @@ def go_straight(v):
 def rotate(dps):
     global d, l, r
     ans = dps*w/d
-    return ans * l, -ans * r
+    return ans * 1.03, -ans * r
     BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, -dps)
 
