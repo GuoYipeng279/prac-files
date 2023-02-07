@@ -2,6 +2,17 @@ import brickpi3
 import time
 import math
 import keyboard
+import numpy as np
+import copy
+import random
+
+scale = 10
+displacement = 10
+e_sigma = 0.3 * scale
+f_sigma = 0.01
+g_sigma = 1
+d = 10*scale
+alpha = 45
 
 BP = brickpi3.BrickPi3()
 
@@ -13,6 +24,14 @@ l = 1
 # l = 1
 r = 1
 
+print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 40*scale+10*scale, 0+displacement*scale)))
+print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
+print ("drawLine:" + str((40*scale+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale, 40*scale+displacement*scale)))
+print ("drawLine:" + str((40*scale+displacement*scale, 40*scale+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
+
+particles = np.zeros([100, 3])
+
+particles += [0+displacement*scale, 40*scale+displacement*scale, 0]
 
 def go_straight(v):
     global d, l, r
@@ -75,15 +94,50 @@ def curve(distance, degree, timing):
         time.sleep(0.02)
 
 # print('something')
+# try:
+#     go(40, 3)
+#     rot(90, 3)
+#     go(40, 3)
+#     rot(90, 3)
+#     go(40, 3)
+#     rot(90, 3)
+#     go(40, 3)
+#     rot(90, 3)
+# except:
+#     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
+#     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
+#     print('error')
+#     BP.reset_all()
+
 try:
-    go(40, 3)
-    rot(90, 3)
-    go(40, 3)
-    rot(90, 3)
-    go(40, 3)
-    rot(90, 3)
-    go(40, 3)
-    rot(90, 3)
+    for i in range(4):
+        for i in range(4):
+            go(10, 2)
+            particle_list = []
+            for particle in particles:
+                e = random.gauss(0, e_sigma)
+                f = random.gauss(0, f_sigma)
+            
+                particle[0] += (d+e)*math.cos(particle[2])
+                particle[1] += (d+e)*math.sin(particle[2])
+                particle[2] += f
+                particle_tuple = (particle[0], particle[1], particle[2])
+                particle_list.append(particle_tuple)
+       
+            print ("drawParticles:" + str(tuple(particle_list)))
+            time.sleep(2)
+        rot(90, 3)
+        particle_list = []
+        for particle in particles:
+            g = random.gauss(0, g_sigma)
+            particle[2] += 90 + g
+            particle_tuple = (particle[0], particle[1], particle[2])
+            particle_list.append(particle_tuple)
+       
+    print ("drawParticles:" + str(tuple(particle_list)))
+
+    time.sleep(2)
+
 except:
     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
