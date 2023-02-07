@@ -112,7 +112,7 @@ def curve(distance, degree, timing):
 try:
     for i in range(4):
         for i in range(4):
-            go(10, 2)
+            go(10, 1)
             particle_list = []
             for particle in particles:
                 e = random.gauss(0, e_sigma)
@@ -124,7 +124,7 @@ try:
                 particle_tuple = (particle[0], particle[1], particle[2])
                 particle_list.append(particle_tuple)
        
-            print ("drawParticles:" + str(tuple(particle_list)))
+            # print ("drawParticles:" + str(tuple(particle_list)))
             time.sleep(2)
         rot(90, 3)
         particle_list = []
@@ -134,7 +134,7 @@ try:
             particle_tuple = (particle[0], particle[1], particle[2])
             particle_list.append(particle_tuple)
        
-    print ("drawParticles:" + str(tuple(particle_list)))
+    # print ("drawParticles:" + str(tuple(particle_list)))
 
     time.sleep(2)
 
