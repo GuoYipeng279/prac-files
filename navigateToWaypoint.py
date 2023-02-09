@@ -16,7 +16,7 @@ particles = np.zeros([100, 4])
 
 particles += [0+displacement*scale, 40*scale+displacement*scale, 0, 1/total_particles]
 
-robot_position = [0, 0, 0]
+robot_position = [0+displacement*scale, 40*scale+displacement*scale, 0]
 
 print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 40*scale+10*scale, 0+displacement*scale)))
 print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
@@ -35,6 +35,8 @@ def navigation():
     while True:
         Wx = input("input the target x coordinate: ")
         Wy = input("input the target y coordinate")
+        Wx = Wx*scale + displacement*scale
+        Wy = 40*scale + displacement*scale - Wy * scale
         navigateToWaypoint(Wx, Wy)
 
 def navigateToWaypoint(X, Y):
@@ -76,5 +78,7 @@ def navigateToWaypoint(X, Y):
         sum_y += particle[1] * particle[3]
         sum_deg += particle[2] * particle[3]
     robot_position = [sum_x, sum_y, sum_deg]
-    print(robot_position)
+    print(robot_position[0]/scale - displacement,
+        40+displacement - robot_position[1]/scale,
+        robot_position[2])
 
