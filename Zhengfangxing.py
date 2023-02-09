@@ -63,6 +63,7 @@ def go(distance, timing):
         BP.set_motor_dps(BP.PORT_B, dps1)
         BP.set_motor_dps(BP.PORT_D, dps2)
         if time.time() - start >= timing:
+            BP.reset_all()
             break
         time.sleep(0.02)
 
@@ -75,6 +76,7 @@ def rot(degree, timing):
         BP.set_motor_dps(BP.PORT_B, dps1)
         BP.set_motor_dps(BP.PORT_D, dps2)
         if time.time() - start >= timing:
+            BP.reset_all()
             break
         time.sleep(0.02)
 # jdwio
