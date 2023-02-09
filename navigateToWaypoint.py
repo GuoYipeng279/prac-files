@@ -82,3 +82,4 @@ def navigateToWaypoint(X, Y):
         40+displacement - robot_position[1]/scale,
         robot_position[2])
 
+navigation()
