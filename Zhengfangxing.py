@@ -139,7 +139,7 @@ if __name__ == '__main__':
                     particle_list.append(particle_tuple)
         
                 print ("drawParticles:" + str(tuple(particle_list)))
-                time.sleep(2)
+                time.sleep(2.5)
             rot(90, 3)
             particle_list = []
             for particle in particles:
@@ -149,7 +149,7 @@ if __name__ == '__main__':
                 particle_list.append(particle_tuple)
         
             print ("drawParticles:" + str(tuple(particle_list)))
-            time.sleep(2)
+            time.sleep(2.5)
 
     except:
         BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
