@@ -126,7 +126,7 @@ if __name__ == '__main__':
         
         for i in range(4):
             for i in range(4):
-                # go(10, 1)
+                go(10, 1)
                 particle_list = []
                 for particle in particles:
                     e = random.gauss(0, e_sigma)
@@ -140,7 +140,7 @@ if __name__ == '__main__':
         
                 print ("drawParticles:" + str(tuple(particle_list)))
                 time.sleep(2.5)
-            # rot(90, 3)
+            rot(90, 3)
             particle_list = []
             for particle in particles:
                 g = random.gauss(0, g_sigma)
