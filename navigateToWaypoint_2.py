@@ -85,7 +85,6 @@ def navigateToWaypoint(X, Y):
         sum_y += particle[1] * particle[3]
         sum_deg += particle[2] * particle[3]
     robot_position = [sum_x, sum_y, sum_deg]
-    # document: the y axis points left and positive θ representing a left turn
     # print(robot_position[0]/scale - displacement,
     #     40+displacement - robot_position[1]/scale,
     #     -robot_position[2])
