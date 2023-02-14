@@ -48,7 +48,7 @@ def navigateToWaypoint(X, Y):
     alpha = -math.atan2(dy, dx)
     beta = alpha - robot_position[2]
     print(beta * 180 / math.pi)
-    rot(beta, 3)
+    rot(-beta * 180 / math.pi, 3)
     particle_list = []
     for particle in particles:
         # scale g_sigma according to alpha and (-math.pi/2)
