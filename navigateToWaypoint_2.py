@@ -8,7 +8,7 @@ scale = 10
 displacement = 10
 e_sigma = 1 * scale
 f_sigma = 0.01
-g_sigma = 0
+g_sigma = 0.01
 d = 10*scale
 total_particles = 100
 
@@ -82,6 +82,7 @@ def navigateToWaypoint(X, Y):
         particle_list.append(particle_tuple)
     # print ("drawParticles:" + str(tuple(particle_list)))
     time.sleep(3)
+    print(particles)
     sum_x, sum_y, sum_deg = 0, 0, 0
     for particle in particles:
         sum_x += particle[0] * particle[3]
