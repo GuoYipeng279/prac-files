@@ -128,7 +128,7 @@ if __name__ == '__main__':
         
         for i in range(4):
             for j in range(4):
-                go(10, 1)
+                go(10, 2)
                 particle_list = []
                 for particle in particles:
                     e = random.gauss(0, e_sigma)
