@@ -139,7 +139,7 @@ if __name__ == '__main__':
                     particle_list.append(particle_tuple)
         
                 print ("drawParticles:" + str(tuple(particle_list)))
-                time.sleep(2.5)
+                time.sleep(2)
             rot(90, 3)
             particle_list = []
             for particle in particles:
@@ -215,7 +215,7 @@ if __name__ == '__main__':
         B=BP.get_motor_encoder(BP.PORT_B)
         D=BP.get_motor_encoder(BP.PORT_D)
         print('B position: ',B,'D position: ',D)'''
-    if KeyboardInterrupt:  # except the program gets interrupted by Ctrl+C on the keyboard.
-        BP.reset_all()
-    else:
-        pass
+    # if KeyboardInterrupt:  # except the program gets interrupted by Ctrl+C on the keyboard.
+    #     BP.reset_all()
+    # else:
+    #     pass
