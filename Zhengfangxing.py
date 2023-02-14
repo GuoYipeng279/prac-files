@@ -12,7 +12,7 @@ e_sigma = 1 * scale
 f_sigma = 0.01
 g_sigma = 0
 d = 10*scale
-alpha = math.pi/2
+alpha = -math.pi/2
 
 BP = brickpi3.BrickPi3()
 
@@ -136,7 +136,7 @@ if __name__ == '__main__':
             particle_list = []
             for particle in particles:
                 g = random.gauss(0, g_sigma)
-                particle[2] += 90 + g
+                particle[2] += alpha + g
                 particle_tuple = (particle[0], particle[1], particle[2])
                 particle_list.append(particle_tuple)
         
