@@ -12,11 +12,11 @@ g_sigma = 0.01
 d = 10*scale
 total_particles = 100.0
 
+sum_rotate = 0.
+
 particles = np.zeros([100, 4])
 
-print(1/total_particles)
 particles += [0+displacement*scale, 40*scale+displacement*scale, 0, 1/total_particles]
-print(particles)
 
 robot_position = [0+displacement*scale, 40*scale+displacement*scale, 0]
 
@@ -42,7 +42,6 @@ def navigation():
         navigateToWaypoint(Wx, Wy)
 
 def navigateToWaypoint(X, Y):
-    print(particles)
     print(X, Y)
     global robot_position
     # Y - robot_position[1] -> robot_position[1] - Y
@@ -85,13 +84,12 @@ def navigateToWaypoint(X, Y):
         particle_list.append(particle_tuple)
     # print ("drawParticles:" + str(tuple(particle_list)))
     time.sleep(3)
-    print(particles)
     sum_x, sum_y, sum_deg = 0, 0, 0
     for particle in particles:
         sum_x += particle[0] * particle[3]
         sum_y += particle[1] * particle[3]
         sum_deg += particle[2] * particle[3]
-    robot_position = [sum_x, sum_y, sum_deg]
+    robot_position = [sum_x - displacement*scale, sum_y, sum_deg]
     print(robot_position)
 
 navigation()
