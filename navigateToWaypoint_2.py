@@ -65,7 +65,7 @@ def navigateToWaypoint(X, Y):
     degree = 0 
     for particle in particles:
         degree += particle[2] * particle[3]
-    robot_position[2] = -degree
+    robot_position[2] = degree
 
     time.sleep(3)
     go(distance/scale, 3)
