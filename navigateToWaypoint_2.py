@@ -15,6 +15,7 @@ total_particles = 100
 particles = np.zeros([100, 4])
 
 particles += [0+displacement*scale, 40*scale+displacement*scale, 0, 1/total_particles]
+print(particles)
 
 robot_position = [0+displacement*scale, 40*scale+displacement*scale, 0]
 
