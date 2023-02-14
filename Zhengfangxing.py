@@ -41,7 +41,7 @@ def go_straight(v):
 def rotate(dps):
     global diameter, l, r
     ans = dps*w/diameter
-    return ans * 0.5, -ans * r *1.14
+    return ans * 0.5, -ans * r *1.5
     BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, -dps)
 
@@ -129,7 +129,7 @@ if __name__ == '__main__':
                     particle_list.append(particle_tuple)
         
                 print ("drawParticles:" + str(tuple(particle_list)))
-                time.sleep(5)
+                time.sleep(2.5)
             rot(90, 3)
             particle_list = []
             for particle in particles:
