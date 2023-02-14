@@ -33,7 +33,7 @@ particles += [0+displacement*scale, 40*scale+displacement*scale, 0]
 def go_straight(v):
     global diameter, l, r
     dps = v / (diameter*math.pi) * 360
-    return -dps * l , -dps * r
+    return -dps * 1.05 , -dps * r
     dps1 = BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, dps)
 
