@@ -125,7 +125,7 @@ if __name__ == '__main__':
 
         
         for i in range(4):
-            for i in range(4):
+            for j in range(4):
                 go(10, 1)
                 particle_list = []
                 for particle in particles:
