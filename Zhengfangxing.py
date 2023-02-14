@@ -1,7 +1,7 @@
 import brickpi3
 import time
 import math
-import keyboard
+# import keyboard
 import numpy as np
 import copy
 import random
