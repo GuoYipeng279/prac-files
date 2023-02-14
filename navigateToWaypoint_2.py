@@ -88,5 +88,6 @@ def navigateToWaypoint(X, Y):
         sum_y += particle[1] * particle[3]
         sum_deg += particle[2] * particle[3]
     robot_position = [sum_x, sum_y, sum_deg]
+    print(robot_position)
 
 navigation()
