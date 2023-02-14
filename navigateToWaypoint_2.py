@@ -34,12 +34,13 @@ robot_position = [0+displacement*scale, 40*scale+displacement*scale, 0]
 def navigation():
     while True:
         Wx = input("input the target x coordinate: ")
-        Wy = input("input the target y coordinate")
+        Wy = input("input the target y coordinate: ")
         Wx = Wx*scale + displacement*scale
         Wy = 40*scale + displacement*scale - Wy * scale
         navigateToWaypoint(Wx, Wy)
 
 def navigateToWaypoint(X, Y):
+    print(X, Y)
     global robot_position
     # Y - robot_position[1] -> robot_position[1] - Y
     dx, dy = X - robot_position[0], robot_position[1] - Y
