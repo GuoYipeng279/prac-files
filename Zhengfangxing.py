@@ -41,7 +41,7 @@ def go_straight(v):
 def rotate(dps):
     global diameter, l, r
     ans = dps*w/diameter
-    return ans * 0.5, -ans * r *1.5
+    return ans * 0.5, -ans * 2
     BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, -dps)
 
