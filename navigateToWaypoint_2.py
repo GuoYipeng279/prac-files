@@ -58,7 +58,7 @@ def navigateToWaypoint(X, Y):
         current_g_sigma = g_sigma * (alpha / (-math.pi/2))
         g = random.gauss(0, current_g_sigma)
 
-        particle[2] += alpha + g
+        particle[2] += beta + g
         particle_tuple = (particle[0], particle[1], particle[2])
         particle_list.append(particle_tuple)
     # print ("drawParticles:" + str(tuple(particle_list)))
