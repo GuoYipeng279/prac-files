@@ -44,6 +44,7 @@ def navigateToWaypoint(X, Y):
     global robot_position
     # Y - robot_position[1] -> robot_position[1] - Y
     dx, dy = X - robot_position[0], robot_position[1] - Y
+    print(dx, dy)
     distance = math.sqrt(dx**2 + dy**2)
     alpha = -math.atan2(dy, dx)
     beta = alpha - robot_position[2]
