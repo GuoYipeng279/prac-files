@@ -40,6 +40,7 @@ def navigation():
         navigateToWaypoint(Wx, Wy)
 
 def navigateToWaypoint(X, Y):
+    print(particles)
     print(X, Y)
     global robot_position
     # Y - robot_position[1] -> robot_position[1] - Y
