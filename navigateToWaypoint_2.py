@@ -63,7 +63,6 @@ def navigateToWaypoint(X, Y):
     robot_position[2] = degree
 
     time.sleep(3)
-    # distance还是要scale up方便计算，这里go()单独/scale
     go(distance/scale, 3)
     particle_list = []
     for particle in particles:
