@@ -18,16 +18,16 @@ particles += [0+displacement*scale, 40*scale+displacement*scale, 0, 1/total_part
 
 robot_position = [0+displacement*scale, 40*scale+displacement*scale, 0]
 
-print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 40*scale+10*scale, 0+displacement*scale)))
-print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
-print ("drawLine:" + str((40*scale+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale, 40*scale+displacement*scale)))
-print ("drawLine:" + str((40*scale+displacement*scale, 40*scale+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
+# print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 40*scale+10*scale, 0+displacement*scale)))
+# print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
+# print ("drawLine:" + str((40*scale+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale, 40*scale+displacement*scale)))
+# print ("drawLine:" + str((40*scale+displacement*scale, 40*scale+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
 
-print ("drawLine:" + str((-5*scale+displacement*scale, 40*scale+(displacement+5)*scale, 5*scale+10*scale, 40*scale+(displacement+5)*scale)))
-print ("drawLine:" + str((-5*scale+displacement*scale, 30*scale+(displacement+5)*scale, 5*scale+10*scale, 30*scale+(displacement+5)*scale)))
+# print ("drawLine:" + str((-5*scale+displacement*scale, 40*scale+(displacement+5)*scale, 5*scale+10*scale, 40*scale+(displacement+5)*scale)))
+# print ("drawLine:" + str((-5*scale+displacement*scale, 30*scale+(displacement+5)*scale, 5*scale+10*scale, 30*scale+(displacement+5)*scale)))
 
-print ("drawLine:" + str((-5*scale+displacement*scale, 40*scale+(displacement+5)*scale, -5*scale+displacement*scale, 30*scale+(displacement+5)*scale)))
-print ("drawLine:" + str((5*scale+10*scale, 40*scale+(displacement+5)*scale, 5*scale+10*scale, 30*scale+(displacement+5)*scale)))
+# print ("drawLine:" + str((-5*scale+displacement*scale, 40*scale+(displacement+5)*scale, -5*scale+displacement*scale, 30*scale+(displacement+5)*scale)))
+# print ("drawLine:" + str((5*scale+10*scale, 40*scale+(displacement+5)*scale, 5*scale+10*scale, 30*scale+(displacement+5)*scale)))
 
 
 
@@ -57,7 +57,7 @@ def navigateToWaypoint(X, Y):
         particle[2] += alpha + g
         particle_tuple = (particle[0], particle[1], particle[2])
         particle_list.append(particle_tuple)
-    print ("drawParticles:" + str(tuple(particle_list)))
+    # print ("drawParticles:" + str(tuple(particle_list)))
     degree = 0 
     for particle in particles:
         degree += particle[2] * particle[3]
@@ -79,9 +79,9 @@ def navigateToWaypoint(X, Y):
         particle[2] += f
         particle_tuple = (particle[0], particle[1], particle[2])
         particle_list.append(particle_tuple)
-    print ("drawParticles:" + str(tuple(particle_list)))
+    # print ("drawParticles:" + str(tuple(particle_list)))
     time.sleep(3)
-    sum_x, sum_y, sum_deg = 0, 0
+    sum_x, sum_y, sum_deg = 0, 0, 0
     for particle in particles:
         sum_x += particle[0] * particle[3]
         sum_y += particle[1] * particle[3]
@@ -89,8 +89,8 @@ def navigateToWaypoint(X, Y):
     robot_position = [sum_x, sum_y, sum_deg]
     # robot_position[2] -> -robot_position[2]
     # document: the y axis points left and positive θ representing a left turn
-    print(robot_position[0]/scale - displacement,
-        40+displacement - robot_position[1]/scale,
-        -robot_position[2])
+    # print(robot_position[0]/scale - displacement,
+    #     40+displacement - robot_position[1]/scale,
+    #     -robot_position[2])
 
 navigation()
