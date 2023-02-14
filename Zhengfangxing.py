@@ -93,6 +93,9 @@ def curve(distance, degree, timing):
         time.sleep(0.02)
 
 if __name__ == '__main__':
+    BP.reset_all()
+    BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
+    BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
 # print('something')
     # try:
     #     go(40, 3)
@@ -110,8 +113,7 @@ if __name__ == '__main__':
     #     BP.reset_all()
 
     try:
-        BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
-        BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
+        
         print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 40*scale+10*scale, 0+displacement*scale)))
         print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
         print ("drawLine:" + str((40*scale+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale, 40*scale+displacement*scale)))
@@ -156,6 +158,7 @@ if __name__ == '__main__':
         BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
         print('error')
         BP.reset_all()
+    BP.reset_all()
 
     # try:
     #     while True:
