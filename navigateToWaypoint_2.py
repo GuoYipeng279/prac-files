@@ -47,6 +47,7 @@ def navigateToWaypoint(X, Y):
     distance = math.sqrt(dx**2 + dy**2)
     alpha = -math.atan2(dy, dx)
     beta = alpha - robot_position[2]
+    print(beta * 180 / math.pi)
     rot(beta, 3)
     particle_list = []
     for particle in particles:
