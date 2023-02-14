@@ -10,11 +10,12 @@ e_sigma = 1 * scale
 f_sigma = 0.01
 g_sigma = 0.01
 d = 10*scale
-total_particles = 100
+total_particles = 100.0
 
 particles = np.zeros([100, 4])
 
-particles += [0+displacement*scale, 40*scale+displacement*scale, 0, 1.1]
+print(1/total_particles)
+particles += [0+displacement*scale, 40*scale+displacement*scale, 0, 1/total_particles]
 print(particles)
 
 robot_position = [0+displacement*scale, 40*scale+displacement*scale, 0]
