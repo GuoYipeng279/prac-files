@@ -44,7 +44,6 @@ def navigateToWaypoint(X, Y):
     # Y - robot_position[1] -> robot_position[1] - Y
     dx, dy = X - robot_position[0], robot_position[1] - Y
     distance = math.sqrt(dx**2 + dy**2)
-    # math.atan2(dy, dx) -> -math.atan2(dy, dx), 因为test.py里左转90度好像是-math.pi/2
     alpha = -math.atan2(dy, dx)
     beta = alpha - robot_position[2]
     rot(beta, 3)
