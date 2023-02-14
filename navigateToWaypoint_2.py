@@ -65,7 +65,7 @@ def navigateToWaypoint(X, Y):
     degree = 0 
     for particle in particles:
         degree += particle[2] * particle[3]
-    robot_position[2] = degree
+    robot_position[2] = -degree
 
     time.sleep(3)
     go(distance/scale, 3)
@@ -78,7 +78,6 @@ def navigateToWaypoint(X, Y):
         f = random.gauss(0, current_f_sigma)
         # d -> distance
         particle[0] += (distance+e)*math.cos(particle[2])
-        print(particle[0])
         particle[1] += (distance+e)*math.sin(particle[2])
         particle[2] += f
         particle_tuple = (particle[0], particle[1], particle[2])
