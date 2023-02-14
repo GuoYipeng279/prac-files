@@ -41,7 +41,7 @@ def go_straight(v):
 def rotate(dps):
     global diameter, l, r
     ans = dps*w/diameter
-    return ans * 0.5, -ans * 1.8
+    return ans * 0.5, -ans * 1.9
     BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, -dps)
 
@@ -139,7 +139,7 @@ if __name__ == '__main__':
                     particle_list.append(particle_tuple)
         
                 print ("drawParticles:" + str(tuple(particle_list)))
-                time.sleep(3)
+                time.sleep(2)
             rot(90, 3)
             particle_list = []
             for particle in particles:
@@ -149,7 +149,7 @@ if __name__ == '__main__':
                 particle_list.append(particle_tuple)
         
             print ("drawParticles:" + str(tuple(particle_list)))
-            time.sleep(3)
+            time.sleep(2)
 
     except:
         BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
