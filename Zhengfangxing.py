@@ -12,7 +12,7 @@ e_sigma = 1 * scale
 f_sigma = 0.01
 g_sigma = 0
 d = 10*scale
-alpha = -math.pi/2
+alpha = math.pi/2
 
 BP = brickpi3.BrickPi3()
 
