@@ -16,7 +16,7 @@ alpha = 45
 
 BP = brickpi3.BrickPi3()
 
-d = 5.3
+diameter = 5.3
 w = 15.0
 s = 1
 a = 2
@@ -31,16 +31,16 @@ particles = np.zeros([100, 3])
 particles += [0+displacement*scale, 40*scale+displacement*scale, 0]
 
 def go_straight(v):
-    global d, l, r
-    dps = v / (d*math.pi) * 360
+    global diameter, l, r
+    dps = v / (diameter*math.pi) * 360
     return -dps * l , -dps * r
     dps1 = BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, dps)
 
 
 def rotate(dps):
-    global d, l, r
-    ans = dps*w/d
+    global diameter, l, r
+    ans = dps*w/diameter
     return ans * 1, -ans * r *1.05
     BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, -dps)
