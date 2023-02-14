@@ -78,6 +78,7 @@ def navigateToWaypoint(X, Y):
         f = random.gauss(0, current_f_sigma)
         # d -> distance
         particle[0] += (distance+e)*math.cos(particle[2])
+        print(particle[0])
         particle[1] += (distance+e)*math.sin(particle[2])
         particle[2] += f
         particle_tuple = (particle[0], particle[1], particle[2])
