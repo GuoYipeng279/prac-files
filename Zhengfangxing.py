@@ -24,11 +24,11 @@ l = 1
 # l = 1
 r = 1
 
+total_particles = 100.0
 
+particles = np.zeros([100, 4])
 
-# particles = np.zeros([100, 3])
-
-# particles += [0+displacement*scale, 40*scale+displacement*scale, 0]
+particles += [0+displacement*scale, 40*scale+displacement*scale, 0, 1/total_particles]
 
 def go_straight(v):
     global diameter, l, r
