@@ -26,9 +26,9 @@ r = 1
 
 
 
-particles = np.zeros([100, 3])
+# particles = np.zeros([100, 3])
 
-particles += [0+displacement*scale, 40*scale+displacement*scale, 0]
+# particles += [0+displacement*scale, 40*scale+displacement*scale, 0]
 
 def go_straight(v):
     global diameter, l, r
