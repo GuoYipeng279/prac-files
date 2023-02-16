@@ -4,6 +4,8 @@ import numpy as np
 import random
 from Zhengfangxing import go, rot
 
+BP = brickpi3.BrickPi3()
+
 scale = 10
 displacement = 10
 e_sigma = 1 * scale
