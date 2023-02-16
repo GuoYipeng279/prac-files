@@ -41,7 +41,7 @@ def go_straight(v):
 def rotate(dps):
     global diameter, l, r
     ans = dps*w/diameter
-    return ans , -ans * 1.3
+    return ans , -ans * 1.4
     BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, -dps)
 
@@ -128,7 +128,7 @@ if __name__ == '__main__':
         
         for i in range(4):
             for j in range(4):
-                go(10, 2)
+                go(10, 1)
                 particle_list = []
                 for particle in particles:
                     e = random.gauss(0, e_sigma)
