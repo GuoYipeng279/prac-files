@@ -3,7 +3,7 @@ import time
 import numpy as np
 import random
 from Zhengfangxing import go, rot
-
+import brickpi3
 BP = brickpi3.BrickPi3()
 
 scale = 10
