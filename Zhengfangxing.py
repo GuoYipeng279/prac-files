@@ -33,7 +33,7 @@ particles += [0+displacement*scale, 40*scale+displacement*scale, 0, 1/total_part
 def go_straight(v):
     global diameter, l, r
     dps = v / (diameter*math.pi) * 360
-    return -dps * 1 , -dps * r
+    return -dps * 1.05 , -dps * r
     dps1 = BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, dps)
 
@@ -61,6 +61,8 @@ def go(distance, timing):
         BP.set_motor_dps(BP.PORT_B, dps1)
         BP.set_motor_dps(BP.PORT_D, dps2)
         if time.time() - start >= timing:
+            BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
+            BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
             BP.reset_all()
             break
         time.sleep(0.02)
@@ -74,6 +76,8 @@ def rot(degree, timing):
         BP.set_motor_dps(BP.PORT_B, dps1)
         BP.set_motor_dps(BP.PORT_D, dps2)
         if time.time() - start >= timing:
+            BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
+            BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
             BP.reset_all()
             break
         time.sleep(0.02)
