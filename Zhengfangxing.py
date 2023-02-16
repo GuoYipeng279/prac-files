@@ -42,7 +42,7 @@ def rotate(dps):
     global diameter, l, r
     ans = dps*w/diameter
     print(ans)
-    return ans , -ans * 1.3
+    return ans , -ans 
     BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, -dps)
 
