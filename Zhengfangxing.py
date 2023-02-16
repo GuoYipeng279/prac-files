@@ -33,7 +33,7 @@ particles += [0+displacement*scale, 40*scale+displacement*scale, 0, 1/total_part
 def go_straight(v):
     global diameter, l, r
     dps = v / (diameter*math.pi) * 360
-    return -dps * 1.05 , -dps * r
+    return -dps * 1 , -dps * r
     dps1 = BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, dps)
 
@@ -143,6 +143,7 @@ if __name__ == '__main__':
         
                 print ("drawParticles:" + str(tuple(particle_list)))
                 time.sleep(2.5)
+            print(i)
             rot(90, 3)
             particle_list = []
             for particle in particles:
