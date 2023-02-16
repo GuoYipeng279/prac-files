@@ -100,7 +100,6 @@ if __name__ == '__main__':
     BP.reset_all()
     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
-# print('something')
     # try:
     #     go(40, 3)
     #     rot(90, 3)
