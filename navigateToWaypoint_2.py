@@ -91,4 +91,6 @@ def navigateToWaypoint(X, Y):
     print(robot_position)
     print(robot_position[0]/scale - displacement, displacement + 40 - robot_position[1]/scale, robot_position[2])
 
+BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
+BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
 navigation()
