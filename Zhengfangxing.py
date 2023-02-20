@@ -52,10 +52,10 @@ def rotate(dps):
 #     print(error)
 
 
-def go(distance, timing):
+def go(distance, speed):
     start = time.time()
     while True:
-        speed = distance/timing
+        timing = distance/speed
         dps1, dps2 = go_straight(speed)
         BP.set_motor_dps(BP.PORT_B, dps1)
         BP.set_motor_dps(BP.PORT_D, dps2)
@@ -67,10 +67,10 @@ def go(distance, timing):
         time.sleep(0.02)
 
 
-def rot(degree, timing):
+def rot(degree, velocity):
     start = time.time()
     while True:
-        velocity = degree/timing
+        timing = degree/velocity
         dps1, dps2 = rotate(velocity)
         BP.set_motor_dps(BP.PORT_B, dps1)
         BP.set_motor_dps(BP.PORT_D, dps2)
@@ -131,7 +131,7 @@ if __name__ == '__main__':
         
         for i in range(4):
             for j in range(4):
-                go(10, 1.5)
+                go(10, 10)
                 particle_list = []
                 for particle in particles:
                     e = random.gauss(0, e_sigma)

@@ -45,7 +45,7 @@ def navigateToWaypoint(X, Y):
     distance = math.sqrt(dx**2 + dy**2)
     alpha = math.atan2(dy / dx)
     beta = alpha - robot_position[2]
-    rot(beta, 3)
+    rot(beta, 30)
     particle_list = []
     for particle in particles:
         g = random.gauss(0, g_sigma)
@@ -60,7 +60,7 @@ def navigateToWaypoint(X, Y):
     robot_position[2] = degree
 
     time.sleep(3)
-    go(distance, 3)
+    go(distance, 10)
     particle_list = []
     for particle in particles:  
         e = random.gauss(0, e_sigma)
