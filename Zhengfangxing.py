@@ -52,7 +52,7 @@ def rotate(dps):
 #     print(error)
 
 
-def go(distance, speed):
+def go(distance, speed=10):
     start = time.time()
     while True:
         timing = distance/speed
@@ -67,7 +67,7 @@ def go(distance, speed):
         time.sleep(0.02)
 
 
-def rot(degree, velocity):
+def rot(degree, velocity=30):
     start = time.time()
     while True:
         timing = degree/velocity
