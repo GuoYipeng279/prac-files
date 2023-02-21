@@ -98,8 +98,9 @@ def navigateToWaypoint(X, Y):
         measures = []
         sonar_positioin_offset = 1
         for i in range(4):
-            measures.append(BP.get_sensor(BP.PORT_1) + sonar_positioin_offset)
+            v = BP.get_sensor(BP.PORT_1)
             time.sleep(0.1)
+            measures.append(v)
         z = np.median(measures) + sonar_positioin_offset
         prob = calculate_likelihood(particle[0]/scale - displacement, 
                                     scale+displacement - particle[1]/scale, 
