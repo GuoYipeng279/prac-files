@@ -7,6 +7,8 @@ import brickpi3
 BP = brickpi3.BrickPi3()
 
 BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
+while True:
+    print(BP.get_sensor(BP.PORT_1))
 
 scale = 10
 displacement = 10
