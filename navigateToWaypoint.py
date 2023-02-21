@@ -61,7 +61,8 @@ robot_position = [(84+displacement)*scale, (map_size+displacement-30)*scale, 0]
 def navigateToWaypoint(X, Y):
     global robot_position
     global particles
-
+    print(X, Y)
+    print(robot_position[0], robot_position[1])
     sonar_positioin_offset = 1
     dx, dy = X - robot_position[0], robot_position[1] - Y
     print("dx: ", dx, "dy: ", dy)
