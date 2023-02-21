@@ -5,6 +5,7 @@ import random
 import brickpi3
 BP = brickpi3.BrickPi3()
 
+BP.reset_all()
 BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
 # try:
 #     while True:
