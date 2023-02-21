@@ -95,13 +95,12 @@ def navigateToWaypoint(X, Y):
     beta = alpha - robot_position[2]
     print(beta * 180 / math.pi)
     rot(-beta * 180 / math.pi, 30)
-    BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
+    # BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
     particle_list = []
     for particle in particles:
         # scale g_sigma according to alpha and (-math.pi/2)
         current_g_sigma = g_sigma * (alpha / (-math.pi/2))
         g = random.gauss(0, current_g_sigma)
-
         particle[2] += beta + g
         measures = []
         sonar_positioin_offset = 0
