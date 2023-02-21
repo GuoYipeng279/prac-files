@@ -17,6 +17,7 @@ while True:
             print(value)                         # print the distance in CM
         except brickpi3.SensorError as error:
             print(error)
+        time.sleep(0.1)
 
 scale = 10
 displacement = 10
