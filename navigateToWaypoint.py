@@ -101,10 +101,10 @@ def calculate_likelihood(x, y, theta, z):
     K = 0
     candidate_walls = []
     candidate_m = []
-    # for wall in walls:
-    #     p1 = wall[0]
-    #     p2 = wall[1]
-    #     print("wall: ", wall)
+    for wall in walls:
+        p1 = wall[0]
+        p2 = wall[1]
+        print("wall: ", wall)
     #     print((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta))
     #     m = ((p2[1]-p1[1]) * (p1[0]-x) - (p2[0]-p1[0])*(p1[1]-y)) /  \
     #         ((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta))
