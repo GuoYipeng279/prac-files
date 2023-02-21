@@ -17,7 +17,7 @@ alpha = -math.pi/2
 BP = brickpi3.BrickPi3()
 
 diameter = 5.3
-w = 14.0
+w = 14.5
 s = 1
 a = 2
 l = 1
@@ -101,14 +101,14 @@ if __name__ == '__main__':
     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
     try:
-        go(40, 10)
-        rot(90, 30)
-        go(40, 10)
-        rot(90, 30)
-        go(40, 10)
-        rot(90, 30)
-        go(40, 10)
-        rot(90, 30)
+        go(40, 15)
+        rot(90, 40)
+        go(40, 15)
+        rot(90, 40)
+        go(40, 15)
+        rot(90, 40)
+        go(40, 15)
+        rot(90, 40)
     except:
         BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
         BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
