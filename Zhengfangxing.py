@@ -9,7 +9,7 @@ import random
 scale = 10
 displacement = 10
 e_sigma = 0.2 * scale
-f_sigma = 0.02
+f_sigma = 0.01
 g_sigma = 0.02
 d = 10*scale
 alpha = -math.pi/2
@@ -17,7 +17,7 @@ alpha = -math.pi/2
 BP = brickpi3.BrickPi3()
 
 diameter = 5.3
-w = 14.0
+w = 12.0
 s = 1
 a = 2
 l = 1
@@ -33,7 +33,7 @@ particles += [0+displacement*scale, 40*scale+displacement*scale, 0, 1/total_part
 def go_straight(v):
     global diameter, l, r
     dps = v / (diameter*math.pi) * 360
-    return -dps * 1.05 , -dps * r
+    return -dps , -dps * r
     dps1 = BP.set_motor_dps(BP.PORT_B, dps)
     BP.set_motor_dps(BP.PORT_D, dps)
 
