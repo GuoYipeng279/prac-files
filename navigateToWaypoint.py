@@ -67,17 +67,19 @@ print ("drawLine:" + str((-5*scale+displacement*scale, 40*scale+(displacement+5)
 print ("drawLine:" + str((5*scale+10*scale, 40*scale+(displacement+5)*scale, 5*scale+10*scale, 30*scale+(displacement+5)*scale)))
 
 def navigateToWaypoint(X, Y):
-    measures = []
-    while True:
-        time.sleep(0.1)
-        try:
-            v = BP.get_sensor(BP.PORT_1)
-            print(v)                         # print the distance in CM
-            measures.append(v)
-            if len(measures) == 10:
-                print(measures)
-                break
-        except brickpi3.SensorError as error:
-            print(error)
+
+    for particle in particles:
+        measures = []
+        while True:
+            time.sleep(0.1)
+            try:
+                v = BP.get_sensor(BP.PORT_1)
+                print(v)                         # print the distance in CM
+                measures.append(v)
+                if len(measures) == 10:
+                    print(measures)
+                    break
+            except brickpi3.SensorError as error:
+                print(error)
 
 navigateToWaypoint(11,1)
