@@ -3,6 +3,7 @@ import time
 import numpy as np
 import random
 import brickpi3
+from Zhengfangxing import go, rot
 BP = brickpi3.BrickPi3()
 
 BP.reset_all()
