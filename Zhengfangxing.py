@@ -100,67 +100,67 @@ if __name__ == '__main__':
     BP.reset_all()
     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
-    # try:
-    #     go(40, 3)
-    #     rot(90, 3)
-    #     go(40, 3)
-    #     rot(90, 3)
-    #     go(40, 3)
-    #     rot(90, 3)
-    #     go(40, 3)
-    #     rot(90, 3)
-    # except:
-    #     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
-    #     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
-    #     print('error')
-    #     BP.reset_all()
-
     try:
-        
-        print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 40*scale+10*scale, 0+displacement*scale)))
-        print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
-        print ("drawLine:" + str((40*scale+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale, 40*scale+displacement*scale)))
-        print ("drawLine:" + str((40*scale+displacement*scale, 40*scale+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
-        
-        print ("drawLine:" + str((-5*scale+displacement*scale, 40*scale+(displacement+5)*scale, 5*scale+10*scale, 40*scale+(displacement+5)*scale)))
-        print ("drawLine:" + str((-5*scale+displacement*scale, 30*scale+(displacement+5)*scale, 5*scale+10*scale, 30*scale+(displacement+5)*scale)))
-
-        print ("drawLine:" + str((-5*scale+displacement*scale, 40*scale+(displacement+5)*scale, -5*scale+displacement*scale, 30*scale+(displacement+5)*scale)))
-        print ("drawLine:" + str((5*scale+10*scale, 40*scale+(displacement+5)*scale, 5*scale+10*scale, 30*scale+(displacement+5)*scale)))
-
-        
-        for i in range(4):
-            for j in range(4):
-                go(10, 10)
-                particle_list = []
-                for particle in particles:
-                    e = random.gauss(0, e_sigma)
-                    f = random.gauss(0, f_sigma)
-                
-                    particle[0] += (d+e)*math.cos(particle[2])
-                    particle[1] += (d+e)*math.sin(particle[2])
-                    particle[2] += f
-                    particle_tuple = (particle[0], particle[1], particle[2])
-                    particle_list.append(particle_tuple)
-        
-                print ("drawParticles:" + str(tuple(particle_list)))
-                time.sleep(2.5)
-            rot(90, 30)
-            particle_list = []
-            for particle in particles:
-                g = random.gauss(0, g_sigma)
-                particle[2] += alpha + g
-                particle_tuple = (particle[0], particle[1], particle[2])
-                particle_list.append(particle_tuple)
-        
-            print ("drawParticles:" + str(tuple(particle_list)))
-            time.sleep(2.5)
-
+        go(40, 10)
+        rot(90, 30)
+        go(40, 10)
+        rot(90, 30)
+        go(40, 10)
+        rot(90, 30)
+        go(40, 10)
+        rot(90, 30)
     except:
         BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
         BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
         print('error')
         BP.reset_all()
+
+    # try:
+        
+    #     print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 40*scale+10*scale, 0+displacement*scale)))
+    #     print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
+    #     print ("drawLine:" + str((40*scale+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale, 40*scale+displacement*scale)))
+    #     print ("drawLine:" + str((40*scale+displacement*scale, 40*scale+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
+        
+    #     print ("drawLine:" + str((-5*scale+displacement*scale, 40*scale+(displacement+5)*scale, 5*scale+10*scale, 40*scale+(displacement+5)*scale)))
+    #     print ("drawLine:" + str((-5*scale+displacement*scale, 30*scale+(displacement+5)*scale, 5*scale+10*scale, 30*scale+(displacement+5)*scale)))
+
+    #     print ("drawLine:" + str((-5*scale+displacement*scale, 40*scale+(displacement+5)*scale, -5*scale+displacement*scale, 30*scale+(displacement+5)*scale)))
+    #     print ("drawLine:" + str((5*scale+10*scale, 40*scale+(displacement+5)*scale, 5*scale+10*scale, 30*scale+(displacement+5)*scale)))
+
+        
+    #     for i in range(4):
+    #         for j in range(4):
+    #             go(10, 10)
+    #             particle_list = []
+    #             for particle in particles:
+    #                 e = random.gauss(0, e_sigma)
+    #                 f = random.gauss(0, f_sigma)
+                
+    #                 particle[0] += (d+e)*math.cos(particle[2])
+    #                 particle[1] += (d+e)*math.sin(particle[2])
+    #                 particle[2] += f
+    #                 particle_tuple = (particle[0], particle[1], particle[2])
+    #                 particle_list.append(particle_tuple)
+        
+    #             print ("drawParticles:" + str(tuple(particle_list)))
+    #             time.sleep(2.5)
+    #         rot(90, 30)
+    #         particle_list = []
+    #         for particle in particles:
+    #             g = random.gauss(0, g_sigma)
+    #             particle[2] += alpha + g
+    #             particle_tuple = (particle[0], particle[1], particle[2])
+    #             particle_list.append(particle_tuple)
+        
+    #         print ("drawParticles:" + str(tuple(particle_list)))
+    #         time.sleep(2.5)
+
+    # except:
+    #     BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
+    #     BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
+    #     print('error')
+    #     BP.reset_all()
     BP.reset_all()
 
     # try:
