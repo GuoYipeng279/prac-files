@@ -8,7 +8,15 @@ BP = brickpi3.BrickPi3()
 
 BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
 while True:
-    print(BP.get_sensor(BP.PORT_1))
+        # read and display the sensor value
+        # BP.get_sensor retrieves a sensor value.
+        # BP.PORT_1 specifies that we are looking for the value of sensor port 1.
+        # BP.get_sensor returns the sensor value (what we want to display).
+        try:
+            value = BP.get_sensor(BP.PORT_1)
+            print(value)                         # print the distance in CM
+        except brickpi3.SensorError as error:
+            print(error)
 
 scale = 10
 displacement = 10
