@@ -117,7 +117,7 @@ def navigateToWaypoint(X, Y):
             time.sleep(0.02)     
         z = np.median(measures) + sonar_positioin_offset
         prob = calculate_likelihood(particle[0]/scale - displacement, 
-                                    scale+displacement - particle[1]/scale, 
+                                    map_size+displacement - particle[1]/scale, 
                                     particle[2],
                                     z)
         particle[3] *= prob
@@ -156,7 +156,7 @@ def navigateToWaypoint(X, Y):
             time.sleep(0.02)
         z = np.median(measures) + sonar_positioin_offset
         prob = calculate_likelihood(particle[0]/scale - displacement, 
-                                    scale+displacement - particle[1]/scale, 
+                                    map_size+displacement - particle[1]/scale, 
                                     particle[2],
                                     z)
         particle[3] *= prob
@@ -193,6 +193,7 @@ def calculate_likelihood(x, y, theta, z):
             min(p1[1], p2[1]) < y + m * math.sin(theta) < max(p1[1], p2[1]):
             candidate_walls.append(wall)
             candidate_m.append(m)
+    print(candidate_m)
     target_index = np.argmin(candidate_m)
     target_wall = candidate_walls[target_index]
     print(target_wall)
