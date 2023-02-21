@@ -80,7 +80,7 @@ def navigateToWaypoint(X, Y):
     print(X, Y)
     global robot_position
     global particles
-    BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
+    
     sonar_positioin_offset = 1
     # Y - robot_position[1] -> robot_position[1] - Y
     dx, dy = X - robot_position[0], robot_position[1] - Y
@@ -99,6 +99,7 @@ def navigateToWaypoint(X, Y):
         particle[2] += beta + g
         measures = []
         sonar_positioin_offset = 1
+        BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
         for i in range(10):
             BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
             try:
