@@ -59,18 +59,18 @@ robot_position = [(84+displacement)*scale, (map_size+displacement-30)*scale, 0]
 
 def navigateToWaypoint(X, Y):
 
-    for particle in particles:
-        measures = []
-        while True:
-            time.sleep(0.1)
-            try:
-                v = BP.get_sensor(BP.PORT_1)
-                print(v)                         # print the distance in CM
-                measures.append(v)
-                if len(measures) == 10:
-                    print(measures)
-                    break
-            except brickpi3.SensorError as error:
-                print(error)
+    # for particle in particles:
+    measures = []
+    while True:
+        time.sleep(0.1)
+        try:
+            v = BP.get_sensor(BP.PORT_1)
+            print(v)                         # print the distance in CM
+            measures.append(v)
+            if len(measures) == 10:
+                print(measures)
+                break
+        except brickpi3.SensorError as error:
+            print(error)
 
 navigateToWaypoint(11,1)
