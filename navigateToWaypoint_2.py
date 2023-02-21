@@ -7,17 +7,17 @@ import brickpi3
 BP = brickpi3.BrickPi3()
 
 BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
-while True:
-        # read and display the sensor value
-        # BP.get_sensor retrieves a sensor value.
-        # BP.PORT_1 specifies that we are looking for the value of sensor port 1.
-        # BP.get_sensor returns the sensor value (what we want to display).
-        try:
-            value = BP.get_sensor(BP.PORT_1)
-            print(value)                         # print the distance in CM
-        except brickpi3.SensorError as error:
-            print(error)
-        time.sleep(0.1)
+# while True:
+#         # read and display the sensor value
+#         # BP.get_sensor retrieves a sensor value.
+#         # BP.PORT_1 specifies that we are looking for the value of sensor port 1.
+#         # BP.get_sensor returns the sensor value (what we want to display).
+#         try:
+#             value = BP.get_sensor(BP.PORT_1)
+#             print(value)                         # print the distance in CM
+#         except brickpi3.SensorError as error:
+#             print(error)
+#         time.sleep(0.1)
 
 scale = 10
 displacement = 10
@@ -79,6 +79,7 @@ def navigateToWaypoint(X, Y):
     global robot_position
     global particles
     BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
+    sonar_positioin_offset = 1
     # Y - robot_position[1] -> robot_position[1] - Y
     dx, dy = X - robot_position[0], robot_position[1] - Y
     print(dx, dy)
@@ -98,6 +99,8 @@ def navigateToWaypoint(X, Y):
         sonar_positioin_offset = 1
         for i in range(4):
             measures.append(BP.get_sensor(BP.PORT_1) + sonar_positioin_offset)
+            time.sleep(0.1)
+        z = np.median(measures) + sonar_positioin_offset
         prob = calculate_likelihood(particle[0]/scale - displacement, 
                                     scale+displacement - particle[1]/scale, 
                                     particle[2],
@@ -127,8 +130,7 @@ def navigateToWaypoint(X, Y):
         measures = []
         for i in range(4):
             measures.append(BP.get_sensor(BP.PORT_1))
-        
-        sonar_positioin_offset = 1
+            time.sleep(0.1)
         z = np.median(measures) + sonar_positioin_offset
         prob = calculate_likelihood(particle[0]/scale - displacement, 
                                     scale+displacement - particle[1]/scale, 
