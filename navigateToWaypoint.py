@@ -125,4 +125,7 @@ def calculate_likelihood(x, y, theta, z):
 x = (180 + displacement) * scale
 y = (map_size + displacement - 30) * scale
 
-navigateToWaypoint(x,y)
+try:
+    navigateToWaypoint(x,y)
+except KeyboardInterrupt:  # except the program gets interrupted by Ctrl+C on the keyboard.
+        BP.reset_all()
