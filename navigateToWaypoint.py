@@ -71,7 +71,7 @@ def navigateToWaypoint(X, Y):
     beta = alpha - robot_position[2]
     # print(beta * 180 / math.pi)
     # rot(-beta * 180 / math.pi, 30)
-    BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
+    # BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
     particle_list = []
     for particle in particles:
         current_g_sigma = g_sigma * (alpha / (-math.pi/2))
