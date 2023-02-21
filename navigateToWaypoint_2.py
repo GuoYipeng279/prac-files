@@ -184,7 +184,7 @@ BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset enco
 BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
 aims = [(180, 30), (180, 54), (138, 54), (138, 168), (114, 168), (114, 84), (84, 84), (84, 30)]
 for aim in aims:
-    x = aim(0)*scale + displacement*scale
-    y = 40*scale+displacement*scale - aim(1)*scale
+    x = aim[0]*scale + displacement*scale
+    y = 40*scale+displacement*scale - aim[1]*scale
     navigateToWaypoint(x, y)
     time.sleep(0.5)
