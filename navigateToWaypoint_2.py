@@ -95,7 +95,7 @@ def navigateToWaypoint(X, Y):
     beta = alpha - robot_position[2]
     print(beta * 180 / math.pi)
     rot(-beta * 180 / math.pi, 30)
-    BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
+    # BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
     particle_list = []
     for particle in particles:
         # scale g_sigma according to alpha and (-math.pi/2)
@@ -123,6 +123,10 @@ def navigateToWaypoint(X, Y):
         particle_tuple = (particle[0], particle[1], particle[2])
         particle_list.append(particle_tuple)
     # print ("drawParticles:" + str(tuple(particle_list)))
+    
+    # normalize
+    particles[:, 3] = particles[:, 3] / np.sum(particles[:, 3])
+    
     degree = 0 
     for particle in particles:
         degree += particle[2] * particle[3]
@@ -131,7 +135,6 @@ def navigateToWaypoint(X, Y):
     time.sleep(3)
     go(distance/scale, 10)
     particle_list = []
-    BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
     for particle in particles:
         # same as g_sigma
         current_e_sigma = e_sigma * (distance / (10*scale))
@@ -186,12 +189,13 @@ def calculate_likelihood(x, y, theta, z):
     for wall in walls:
         p1 = wall[0]
         p2 = wall[1]
-        m = ((p2[1]-p1[1]) * (p1[0]-x) - (p2[0]-p1[0])*(p1[1]-y)) /  \
-            ((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta))
-        if min(p1[0], p2[0]) < x + m * math.cos(theta) < max(p1[0], p2[0]) and \
-            min(p1[1], p2[1]) < y + m * math.sin(theta) < max(p1[1], p2[1]):
-            candidate_walls.append(wall)
-            candidate_m.append(m)
+        if (p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta) != 0:
+            m = ((p2[1]-p1[1]) * (p1[0]-x) - (p2[0]-p1[0])*(p1[1]-y)) /  \
+                ((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta))
+            if min(p1[0], p2[0]) < x + m * math.cos(theta) < max(p1[0], p2[0]) and \
+                min(p1[1], p2[1]) < y + m * math.sin(theta) < max(p1[1], p2[1]):
+                candidate_walls.append(wall)
+                candidate_m.append(m)
     print(candidate_m)
     target_index = np.argmin(candidate_m)
     target_wall = candidate_walls[target_index]
