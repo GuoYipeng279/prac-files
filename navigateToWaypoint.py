@@ -88,6 +88,11 @@ def navigateToWaypoint(X, Y):
                 print(error)
             time.sleep(0.1)
         z = np.median(measures) + sonar_positioin_offset
+        prob = calculate_likelihood(particle[0]/scale - displacement,
+                                    map_size+displacement - particle[1]/scale,
+                                    particle[2],
+                                    z)
+                                    
 
 def calculate_likelihood(x, y, theta, z):
     std_sensor = 1
