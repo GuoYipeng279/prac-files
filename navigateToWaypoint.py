@@ -58,7 +58,8 @@ particles += [0+displacement*scale, (map_size + displacement)*scale, 0, 1/total_
 robot_position = [(84+displacement)*scale, (map_size+displacement-30)*scale, 0]
 
 def navigateToWaypoint(X, Y):
-
+    global robot_position
+    global particles
     for particle in particles:
         measures = []
         while True:
