@@ -49,3 +49,7 @@ wall_f = (point_F, point_G)
 wall_g = (point_G, point_H)
 wall_h = (point_H, point_O)
 walls = [wall_a, wall_b, wall_c, wall_d, wall_e, wall_f, wall_g, wall_h]
+
+particles = np.zeros([100, 4])
+particles += [0+displacement*scale, 40*scale+displacement*scale, 0, 1/total_particles]
+robot_position = [84*scale+displacement*scale, 40*scale+displacement*scale - 30*scale, 0]
