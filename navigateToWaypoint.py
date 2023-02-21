@@ -105,13 +105,14 @@ def calculate_likelihood(x, y, theta, z):
         p1 = wall[0]
         p2 = wall[1]
         # print((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta))
-        m = ((p2[1]-p1[1]) * (p1[0]-x) - (p2[0]-p1[0])*(p1[1]-y)) /  \
-            ((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta))
-    #     if min(p1[0], p2[0]) < x + m * math.cos(theta) < max(p1[0], p2[0]) and \
-    #         min(p1[1], p2[1]) < y + m * math.sin(theta) < max(p1[1], p2[1]):
-    #         candidate_walls.append(wall)
-    #         candidate_m.append(m)
-    # print(candidate_m)
+        if (p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta) != 0:
+            m = ((p2[1]-p1[1]) * (p1[0]-x) - (p2[0]-p1[0])*(p1[1]-y)) /  \
+                ((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta))
+            if min(p1[0], p2[0]) < x + m * math.cos(theta) < max(p1[0], p2[0]) and \
+                    min(p1[1], p2[1]) < y + m * math.sin(theta) < max(p1[1], p2[1]):
+                candidate_walls.append(wall)
+                candidate_m.append(m)
+    print(candidate_m)
     # target_index = np.argmin(candidate_m)
     # target_wall = candidate_walls[target_index]
     # print(target_wall)
