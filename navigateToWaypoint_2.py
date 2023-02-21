@@ -39,18 +39,19 @@ particles = np.zeros([100, 4])
 
 particles += [0+displacement*scale, 40*scale+displacement*scale, 0, 1/total_particles]
 
-robot_position = [0+displacement*scale, 40*scale+displacement*scale, 0]
+robot_position = [84*scale+displacement*scale, 40*scale+displacement*scale - 30*scale, 0]
+# robot_position = [0+displacement*scale, 40*scale+displacement*scale, 0]
 
-# print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 40*scale+10*scale, 0+displacement*scale)))
-# print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
-# print ("drawLine:" + str((40*scale+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale, 40*scale+displacement*scale)))
-# print ("drawLine:" + str((40*scale+displacement*scale, 40*scale+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
+print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 40*scale+10*scale, 0+displacement*scale)))
+print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
+print ("drawLine:" + str((40*scale+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale, 40*scale+displacement*scale)))
+print ("drawLine:" + str((40*scale+displacement*scale, 40*scale+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
 
-# print ("drawLine:" + str((-5*scale+displacement*scale, 40*scale+(displacement+5)*scale, 5*scale+10*scale, 40*scale+(displacement+5)*scale)))
-# print ("drawLine:" + str((-5*scale+displacement*scale, 30*scale+(displacement+5)*scale, 5*scale+10*scale, 30*scale+(displacement+5)*scale)))
+print ("drawLine:" + str((-5*scale+displacement*scale, 40*scale+(displacement+5)*scale, 5*scale+10*scale, 40*scale+(displacement+5)*scale)))
+print ("drawLine:" + str((-5*scale+displacement*scale, 30*scale+(displacement+5)*scale, 5*scale+10*scale, 30*scale+(displacement+5)*scale)))
 
-# print ("drawLine:" + str((-5*scale+displacement*scale, 40*scale+(displacement+5)*scale, -5*scale+displacement*scale, 30*scale+(displacement+5)*scale)))
-# print ("drawLine:" + str((5*scale+10*scale, 40*scale+(displacement+5)*scale, 5*scale+10*scale, 30*scale+(displacement+5)*scale)))
+print ("drawLine:" + str((-5*scale+displacement*scale, 40*scale+(displacement+5)*scale, -5*scale+displacement*scale, 30*scale+(displacement+5)*scale)))
+print ("drawLine:" + str((5*scale+10*scale, 40*scale+(displacement+5)*scale, 5*scale+10*scale, 30*scale+(displacement+5)*scale)))
 
 
 
@@ -80,7 +81,9 @@ def navigateToWaypoint(X, Y):
         g = random.gauss(0, current_g_sigma)
 
         particle[2] += beta + g
-        z = measure
+        measures = []
+        for i in range(4):
+            measures.append(BP.get_sensor(BP.PORT_1))
         prob = calculate_likelihood(particle[0]/scale - displacement, 
                                     scale+displacement - particle[1]/scale, 
                                     particle[2],
@@ -179,4 +182,9 @@ def resampling(old_particles):
 
 BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
 BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
-navigation()
+aims = [(180, 30), (180, 54), (138, 54), (138, 168), (114, 168), (114, 84), (84, 84), (84, 30)]
+for aim in aims:
+    x = aim(0)*scale + displacement*scale
+    y = 40*scale+displacement*scale - aim(1)*scale
+    navigateToWaypoint(x, y)
+    time.sleep()
