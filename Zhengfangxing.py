@@ -8,16 +8,16 @@ import random
 
 scale = 10
 displacement = 10
-e_sigma = 1 * scale
-f_sigma = 0.01
-g_sigma = 0.01
+e_sigma = 0.25 * scale
+f_sigma = 0.02
+g_sigma = 0.02
 d = 10*scale
 alpha = -math.pi/2
 
 BP = brickpi3.BrickPi3()
 
 diameter = 5.3
-w = 20.0
+w = 18.0
 s = 1
 a = 2
 l = 1
@@ -145,7 +145,7 @@ if __name__ == '__main__':
         
                 print ("drawParticles:" + str(tuple(particle_list)))
                 time.sleep(2.5)
-            rot(90, 3)
+            rot(90, 30)
             particle_list = []
             for particle in particles:
                 g = random.gauss(0, g_sigma)
