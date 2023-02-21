@@ -21,4 +21,31 @@ try:
         time.sleep(0.02)  # delay for 0.02 seconds (20ms) to reduce the Raspberry Pi CPU load.
 
 except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
-    BP.reset_all()    
+    BP.reset_all()
+
+scale = 10
+displacement = 10
+e_sigma = 1 * scale
+f_sigma = 0.01
+g_sigma = 0.01
+d = 10*scale
+total_particles = 100.0
+
+point_O = (0, 0)
+point_A = (0, 168)
+point_B = (84, 168)
+point_C = (84, 126)
+point_D = (84, 210)
+point_E = (168, 210)
+point_F = (168, 84)
+point_G = (210, 84)
+point_H = (210, 0)
+wall_a = (point_O, point_A)
+wall_b = (point_A, point_B)
+wall_c = (point_C, point_D)
+wall_d = (point_D, point_E)
+wall_e = (point_E, point_F)
+wall_f = (point_F, point_G)
+wall_g = (point_G, point_H)
+wall_h = (point_H, point_O)
+walls = [wall_a, wall_b, wall_c, wall_d, wall_e, wall_f, wall_g, wall_h]
