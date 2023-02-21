@@ -75,14 +75,6 @@ def navigation():
         navigateToWaypoint(Wx, Wy)
 
 def navigateToWaypoint(X, Y):
-    for i in range(10):
-        BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
-        try:
-            v = BP.get_sensor(BP.PORT_1)
-            print(v)                         # print the distance in CM
-        except brickpi3.SensorError as error:
-            print(error)
-        time.sleep(0.1)     
     print(X, Y)
     global robot_position
     global particles
