@@ -187,4 +187,4 @@ for aim in aims:
     x = aim(0)*scale + displacement*scale
     y = 40*scale+displacement*scale - aim(1)*scale
     navigateToWaypoint(x, y)
-    time.sleep()
+    time.sleep(0.5)
