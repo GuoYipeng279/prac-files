@@ -79,7 +79,7 @@ def rot(degree, velocity=30):
         if time.time() - start >= timing:
             BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
             BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
-            BP.reset_all()
+            # BP.reset_all()
             break
         time.sleep(0.02)
 # jdwio

@@ -70,7 +70,7 @@ def navigateToWaypoint(X, Y):
     alpha = -math.atan2(dy, dx)
     beta = alpha - robot_position[2]
     # print(beta * 180 / math.pi)
-    # rot(-beta * 180 / math.pi, 30)
+    rot(-beta * 180 / math.pi, 30)
     # BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
     particle_list = []
     for particle in particles:
