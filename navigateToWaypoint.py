@@ -61,6 +61,15 @@ robot_position = [(84+displacement)*scale, (map_size+displacement-30)*scale, 0]
 def navigateToWaypoint(X, Y):
     global robot_position
     global particles
+
+    sonar_positioin_offset = 1
+    dx, dy = X - robot_position[0], robot_position[1] - Y
+    print(dx, dy)
+    distance = math.sqrt(dx**2 + dy**2)
+    alpha = -math.atan2(dy, dx)
+    beta = alpha - robot_position[2]
+    print(beta * 180 / math.pi)
+    # rot(-beta * 180 / math.pi, 30)
     for particle in particles:
         measures = []
         while True:
@@ -75,4 +84,4 @@ def navigateToWaypoint(X, Y):
             except brickpi3.SensorError as error:
                 print(error)
 
-navigateToWaypoint(11,1)
+navigateToWaypoint(180,30)
