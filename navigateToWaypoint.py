@@ -71,7 +71,6 @@ def navigateToWaypoint(X, Y):
     beta = alpha - robot_position[2]
     # print(beta * 180 / math.pi)
     # rot(-beta * 180 / math.pi, 30)
-    rot(-beta * 180 / math.pi, 30)
     particle_list = []
     for particle in particles:
         current_g_sigma = g_sigma * (alpha / (-math.pi/2))
