@@ -64,7 +64,7 @@ def navigateToWaypoint(X, Y):
 
     sonar_positioin_offset = 1
     dx, dy = X - robot_position[0], robot_position[1] - Y
-    print(dx, dy)
+    print("dx: ", dx, "dy: ", dy)
     distance = math.sqrt(dx**2 + dy**2)
     alpha = -math.atan2(dy, dx)
     beta = alpha - robot_position[2]
