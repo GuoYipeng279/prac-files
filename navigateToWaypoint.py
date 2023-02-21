@@ -84,4 +84,7 @@ def navigateToWaypoint(X, Y):
             except brickpi3.SensorError as error:
                 print(error)
 
-navigateToWaypoint(180,30)
+x = (180 + displacement) * scale
+y = (map_size + displacement - 30) * scale
+
+navigateToWaypoint(x,y)
