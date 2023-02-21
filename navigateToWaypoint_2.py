@@ -4,6 +4,8 @@ import numpy as np
 import random
 from Zhengfangxing import go, rot
 import brickpi3
+from __future__ import print_function # use python 3 syntax but make it compatible with python 2
+from __future__ import division       #   
 BP = brickpi3.BrickPi3()
 
 BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
