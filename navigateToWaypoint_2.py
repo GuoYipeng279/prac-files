@@ -8,20 +8,25 @@ from particleDataStructures import Map
 BP = brickpi3.BrickPi3()
 
 BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
-while True:
-        # read and display the sensor value
-        # BP.get_sensor retrieves a sensor value.
-        # BP.PORT_1 specifies that we are looking for the value of sensor port 1.
-        # BP.get_sensor returns the sensor value (what we want to display).
-        try:
-            value = BP.get_sensor(BP.PORT_1)
-            print(value)                         # print the distance in CM
-        except brickpi3.SensorError as error:
-            print(error)
-        time.sleep(0.1)
+# while True:
+#         # read and display the sensor value
+#         # BP.get_sensor retrieves a sensor value.
+#         # BP.PORT_1 specifies that we are looking for the value of sensor port 1.
+#         # BP.get_sensor returns the sensor value (what we want to display).
+#         try:
+#             value = BP.get_sensor(BP.PORT_1)
+#             print(value)                         # print the distance in CM
+#         except brickpi3.SensorError as error:
+#             print(error)
+#         time.sleep(0.1)
 
-scale = 10
-displacement = 10
+# scale = 10
+map_size = 210
+canvas_size = 768
+displacement = 0.05*map_size
+scale = canvas_size/(map_size+2 * displacement)
+# displacement = 10
+
 e_sigma = 1 * scale
 f_sigma = 0.01
 g_sigma = 0.01
@@ -48,10 +53,10 @@ wall_h = (point_H, point_O)
 walls = [wall_a, wall_b, wall_c, wall_d, wall_e, wall_f, wall_g, wall_h]
 
 particles = np.zeros([100, 4])
+particles += [0+displacement*scale, (map_size + displacement)*scale, 0, 1/total_particles]
+# particles += [0+displacement*scale, 40*scale+displacement*scale, 0, 1/total_particles]
 
-particles += [0+displacement*scale, 40*scale+displacement*scale, 0, 1/total_particles]
-
-robot_position = [84*scale+displacement*scale, 40*scale+displacement*scale - 30*scale, 0]
+robot_position = [(84+displacement)*scale, (map_size+displacement-30)*scale, 0]
 # robot_position = [0+displacement*scale, 40*scale+displacement*scale, 0]
 
 # print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 40*scale+10*scale, 0+displacement*scale)))
@@ -71,8 +76,9 @@ def navigation():
     while True:
         Wx = input("input the target x coordinate: ")
         Wy = input("input the target y coordinate: ")
-        Wx = Wx*scale + displacement*scale
-        Wy = 40*scale + displacement*scale - Wy * scale
+        Wx = (Wx + displacement) * scale
+        Wy = (map_size + displacement - Wy) * scale
+        # Wy = 40*scale + displacement*scale - Wy * scale
         navigateToWaypoint(Wx, Wy)
 
 def navigateToWaypoint(X, Y):
@@ -169,7 +175,7 @@ def navigateToWaypoint(X, Y):
         sum_deg += particle[2] * particle[3]
     robot_position = [sum_x, sum_y, sum_deg]
     print(robot_position)
-    print(robot_position[0]/scale - displacement, displacement + 40 - robot_position[1]/scale, robot_position[2])
+    print(robot_position[0]/scale - displacement, displacement + map_size - robot_position[1]/scale, robot_position[2])
 
     particles = resampling(particles)
 
@@ -188,7 +194,8 @@ def calculate_likelihood(x, y, theta, z):
             candidate_walls.append(wall)
             candidate_m.append(m)
     target_index = np.argmin(candidate_m)
-    # target_wall = candidate_walls[target_index]
+    target_wall = candidate_walls[target_index]
+    print(target_wall)
     target_m = candidate_m[target_index]
     probability = math.e ** (-(z - target_m)**2 / (2*std_sensor**2)) + K
     return probability
@@ -218,7 +225,7 @@ BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset enco
 BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
 aims = [(180, 30), (180, 54), (138, 54), (138, 168), (114, 168), (114, 84), (84, 84), (84, 30)]
 for aim in aims:
-    x = aim[0]*scale + displacement*scale
-    y = 40*scale+displacement*scale - aim[1]*scale
+    x = (aim[0] + displacement) * scale
+    y = (map_size + displacement - aim[1]) * scale
     navigateToWaypoint(x, y)
     time.sleep(0.5)
