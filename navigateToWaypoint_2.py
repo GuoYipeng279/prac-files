@@ -100,7 +100,7 @@ def navigateToWaypoint(X, Y):
         for i in range(4):
             BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
             v = BP.get_sensor(BP.PORT_1)
-            time.sleep(0.1)
+            time.sleep(0.5)
             measures.append(v)
         z = np.median(measures) + sonar_positioin_offset
         prob = calculate_likelihood(particle[0]/scale - displacement, 
