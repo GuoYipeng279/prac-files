@@ -17,7 +17,7 @@ alpha = -math.pi/2
 BP = brickpi3.BrickPi3()
 
 diameter = 5.3
-w = 14.8
+w = 15
 s = 1
 a = 2
 l = 1
@@ -62,6 +62,8 @@ def go(distance, speed=10):
         if time.time() - start >= timing:
             BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
             BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
+            BP.set_motor_dps(BP.PORT_B, 0)
+            BP.set_motor_dps(BP.PORT_D, 0)
             BP.reset_all()
             break
         time.sleep(0.02)
