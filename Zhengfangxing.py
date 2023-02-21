@@ -17,7 +17,7 @@ alpha = -math.pi/2
 BP = brickpi3.BrickPi3()
 
 diameter = 5.3
-w = 15.0
+w = 14.0
 s = 1
 a = 2
 l = 1
