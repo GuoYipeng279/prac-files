@@ -6,6 +6,8 @@ from Zhengfangxing import go, rot
 import brickpi3
 BP = brickpi3.BrickPi3()
 
+BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
+
 scale = 10
 displacement = 10
 e_sigma = 1 * scale
@@ -105,7 +107,12 @@ def navigateToWaypoint(X, Y):
         particle[0] += (distance+e)*math.cos(particle[2])
         particle[1] += (distance+e)*math.sin(particle[2])
         particle[2] += f
-        z = measure
+        measures = []
+        for i in range(4):
+            measures.append(BP.get_sensor(BP.PORT_1))
+        
+        sonar_positioin_offset = 9
+        z = np.median(measures) + sonar_positioin_offset
         prob = calculate_likelihood(particle[0]/scale - displacement, 
                                     scale+displacement - particle[1]/scale, 
                                     particle[2],
@@ -114,6 +121,8 @@ def navigateToWaypoint(X, Y):
         particle_tuple = (particle[0], particle[1], particle[2])
         particle_list.append(particle_tuple)
     # print ("drawParticles:" + str(tuple(particle_list)))
+    # normalize
+    particles[:, 3] = particles[:, 3] / np.sum(particles[:, 3])
     time.sleep(3)
     
     sum_x, sum_y, sum_deg = 0, 0, 0
@@ -124,6 +133,8 @@ def navigateToWaypoint(X, Y):
     robot_position = [sum_x, sum_y, sum_deg]
     print(robot_position)
     print(robot_position[0]/scale - displacement, displacement + 40 - robot_position[1]/scale, robot_position[2])
+
+    particles = resampling(particles)
 
 def calculate_likelihood(x, y, theta, z):
     std_sensor = 1
@@ -146,7 +157,24 @@ def calculate_likelihood(x, y, theta, z):
     return probability
 
 
-
+def resampling(old_particles):
+    global total_particles
+    cumulative_weight =  np.zeros([total_particles])
+    new_particles = np.zeros([total_particles, 4])
+    for i in range(total_particles):
+        weight = old_particles[i][3]
+        cumulative_weight[i] = weight + cumulative_weight[-1]
+    for i in range(total_particles):
+        p = np.random.random()
+        for j in range(total_particles):
+            if j == 0:
+                if p <= cumulative_weight[j]:
+                    new_particles[i] = old_particles[j]
+            else:
+                if cumulative_weight[j-1] < p <= cumulative_weight[j]:
+                    new_particles[i] = old_particles[j]
+    new_particles[:,3] = 1/total_particles
+    return new_particles
 
 
 BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
