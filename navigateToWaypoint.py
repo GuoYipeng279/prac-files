@@ -24,8 +24,10 @@ BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
 # except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
 #     BP.reset_all()
 
-scale = 10
-displacement = 10
+map_size = 210
+canvas_size = 768
+displacement = 0.05*map_size
+scale = canvas_size/(map_size+2 * displacement)
 e_sigma = 1 * scale
 f_sigma = 0.01
 g_sigma = 0.01
@@ -52,19 +54,8 @@ wall_h = (point_H, point_O)
 walls = [wall_a, wall_b, wall_c, wall_d, wall_e, wall_f, wall_g, wall_h]
 
 particles = np.zeros([100, 4])
-particles += [0+displacement*scale, 40*scale+displacement*scale, 0, 1/total_particles]
-robot_position = [84*scale+displacement*scale, 40*scale+displacement*scale - 30*scale, 0]
-
-print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 40*scale+10*scale, 0+displacement*scale)))
-print ("drawLine:" + str((0+displacement*scale, 0+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
-print ("drawLine:" + str((40*scale+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale, 40*scale+displacement*scale)))
-print ("drawLine:" + str((40*scale+displacement*scale, 40*scale+displacement*scale, 0+displacement*scale, 40*scale+displacement*scale)))
-
-print ("drawLine:" + str((-5*scale+displacement*scale, 40*scale+(displacement+5)*scale, 5*scale+10*scale, 40*scale+(displacement+5)*scale)))
-print ("drawLine:" + str((-5*scale+displacement*scale, 30*scale+(displacement+5)*scale, 5*scale+10*scale, 30*scale+(displacement+5)*scale)))
-
-print ("drawLine:" + str((-5*scale+displacement*scale, 40*scale+(displacement+5)*scale, -5*scale+displacement*scale, 30*scale+(displacement+5)*scale)))
-print ("drawLine:" + str((5*scale+10*scale, 40*scale+(displacement+5)*scale, 5*scale+10*scale, 30*scale+(displacement+5)*scale)))
+particles += [0+displacement*scale, (map_size + displacement)*scale, 0, 1/total_particles]
+robot_position = [(84+displacement)*scale, (map_size+displacement-30)*scale, 0]
 
 def navigateToWaypoint(X, Y):
 
