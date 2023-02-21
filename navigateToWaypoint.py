@@ -5,8 +5,7 @@ import random
 import brickpi3
 BP = brickpi3.BrickPi3()
 
-BP.reset_all()
-BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
+
 # try:
 #     while True:
 #         # read and display the sensor value
@@ -69,6 +68,8 @@ print ("drawLine:" + str((5*scale+10*scale, 40*scale+(displacement+5)*scale, 5*s
 def navigateToWaypoint(X, Y):
     num = 0
     for i in range(10):
+        BP.reset_all()
+        BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
         try:
             v = BP.get_sensor(BP.PORT_1)
             print(v)                         # print the distance in CM
