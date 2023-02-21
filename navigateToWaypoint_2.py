@@ -98,6 +98,7 @@ def navigateToWaypoint(X, Y):
         measures = []
         sonar_positioin_offset = 1
         for i in range(4):
+            BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
             v = BP.get_sensor(BP.PORT_1)
             time.sleep(0.1)
             measures.append(v)
