@@ -8,8 +8,8 @@ import random
 
 scale = 10
 displacement = 10
-e_sigma = 0.25 * scale
-f_sigma = 0.02
+e_sigma = 0.2 * scale
+f_sigma = 0.05
 g_sigma = 0.02
 d = 10*scale
 alpha = -math.pi/2
@@ -17,7 +17,7 @@ alpha = -math.pi/2
 BP = brickpi3.BrickPi3()
 
 diameter = 5.3
-w = 18.0
+w = 16.0
 s = 1
 a = 2
 l = 1
