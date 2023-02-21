@@ -86,7 +86,31 @@ def navigateToWaypoint(X, Y):
                     break
             except brickpi3.SensorError as error:
                 print(error)
-            time.sleep(0.02)
+            time.sleep(0.1)
+        z = np.median(measures) + sonar_positioin_offset
+
+def calculate_likelihood(x, y, theta, z):
+    std_sensor = 1
+    K = 0
+    candidate_walls = []
+    candidate_m = []
+    for wall in walls:
+        p1 = wall[0]
+        p2 = wall[1]
+        m = ((p2[1]-p1[1]) * (p1[0]-x) - (p2[0]-p1[0])*(p1[1]-y)) /  \
+            ((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta))
+        if min(p1[0], p2[0]) < x + m * math.cos(theta) < max(p1[0], p2[0]) and \
+            min(p1[1], p2[1]) < y + m * math.sin(theta) < max(p1[1], p2[1]):
+            candidate_walls.append(wall)
+            candidate_m.append(m)
+    print(candidate_m)
+    target_index = np.argmin(candidate_m)
+    target_wall = candidate_walls[target_index]
+    print(target_wall)
+    target_m = candidate_m[target_index]
+    probability = math.e ** (-(z - target_m)**2 / (2*std_sensor**2)) + K
+    return probability
+
 
 x = (180 + displacement) * scale
 y = (map_size + displacement - 30) * scale
