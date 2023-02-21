@@ -68,6 +68,7 @@ print ("drawLine:" + str((5*scale+10*scale, 40*scale+(displacement+5)*scale, 5*s
 def navigateToWaypoint(X, Y):
     num = 0
     for i in range(10):
+        time.sleep(0.1)
         BP.reset_all()
         BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
         try:
@@ -75,7 +76,7 @@ def navigateToWaypoint(X, Y):
             print(v)                         # print the distance in CM
         except brickpi3.SensorError as error:
             print(error)
-        time.sleep(0.1)
+        
         num += 1
 
 navigateToWaypoint(11,1)
