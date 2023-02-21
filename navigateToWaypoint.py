@@ -66,7 +66,7 @@ print ("drawLine:" + str((-5*scale+displacement*scale, 40*scale+(displacement+5)
 print ("drawLine:" + str((5*scale+10*scale, 40*scale+(displacement+5)*scale, 5*scale+10*scale, 30*scale+(displacement+5)*scale)))
 
 def navigateToWaypoint(X, Y):
-    while True:
+    for i in range(10):
         try:
             v = BP.get_sensor(BP.PORT_1)
             print(v)                         # print the distance in CM
