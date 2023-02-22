@@ -137,8 +137,8 @@ def navigateToWaypoint(X, Y):
     time.sleep(3)
     while distance > 0:
         if distance/scale > 20:
-            go(distance/scale, 10)
-            distance -= 20
+            go(20, 10)
+            distance -= 20 * scale
             distance_moved = 20
         else:
             go(distance, 10)
