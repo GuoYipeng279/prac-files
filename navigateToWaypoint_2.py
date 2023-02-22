@@ -133,42 +133,48 @@ def navigateToWaypoint(X, Y):
     robot_position[2] = degree
 
     time.sleep(3)
-    go(distance/scale, 10)
-    particle_list = []
-    for particle in particles:
-        # same as g_sigma
-        current_e_sigma = e_sigma * (distance / (10*scale))
-        current_f_sigma = f_sigma * (distance / (10*scale))
-        e = random.gauss(0, current_e_sigma)
-        f = random.gauss(0, current_f_sigma)
-        # d -> distance
-        particle[0] += (distance+e)*math.cos(particle[2])
-        particle[1] += (distance+e)*math.sin(particle[2])
-        particle[2] += f
-        measures = []
-        while True:
-            try:
-                v = BP.get_sensor(BP.PORT_1)
-                # print(v)                         # print the distance in CM
-                measures.append(v)
-                if len(measures) == 10:
-                    break
-            except brickpi3.SensorError as error:
-                print(error)
-            time.sleep(0.02)
-        z = np.median(measures) + sonar_positioin_offset
-        prob = calculate_likelihood(particle[0]/scale - displacement, 
-                                    map_size+displacement - particle[1]/scale, 
-                                    particle[2],
-                                    z)
-        particle[3] *= prob
-        particle_tuple = (particle[0], particle[1], particle[2])
-        particle_list.append(particle_tuple)
-    # print ("drawParticles:" + str(tuple(particle_list)))
-
-    # normalize
-    particles[:, 3] = particles[:, 3] / np.sum(particles[:, 3])
-    time.sleep(3)
+    while distance > 0:
+        if distance/scale > 20:
+            go(distance/scale, 10)
+            distance -= 20
+            distance_moved = 20
+        else:
+            go(distance, 10)
+            distance_moved = distance
+        particle_list = []
+        for particle in particles:
+            # same as g_sigma
+            current_e_sigma = e_sigma * (distance / (distance_moved*scale))
+            current_f_sigma = f_sigma * (distance / (distance_moved*scale))
+            e = random.gauss(0, current_e_sigma)
+            f = random.gauss(0, current_f_sigma)
+            # d -> distance
+            particle[0] += (distance+e)*math.cos(particle[2])
+            particle[1] += (distance+e)*math.sin(particle[2])
+            particle[2] += f
+            measures = []
+            while True:
+                try:
+                    v = BP.get_sensor(BP.PORT_1)
+                    # print(v)                         # print the distance in CM
+                    measures.append(v)
+                    if len(measures) == 10:
+                        break
+                except brickpi3.SensorError as error:
+                    print(error)
+                time.sleep(0.02)
+            z = np.median(measures) + sonar_positioin_offset
+            prob = calculate_likelihood(particle[0]/scale - displacement, 
+                                        map_size+displacement - particle[1]/scale, 
+                                        particle[2],
+                                        z)
+            particle[3] *= prob
+            particle_tuple = (particle[0], particle[1], particle[2])
+            particle_list.append(particle_tuple)
+        # normalize
+        particles[:, 3] = particles[:, 3] / np.sum(particles[:, 3])
+        time.sleep(3)
+        # print ("drawParticles:" + str(tuple(particle_list)))
     
     sum_x, sum_y, sum_deg = 0, 0, 0
     for particle in particles:
@@ -192,14 +198,14 @@ def calculate_likelihood(x, y, theta, z):
         if (p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta) != 0:
             m = ((p2[1]-p1[1]) * (p1[0]-x) - (p2[0]-p1[0])*(p1[1]-y)) /  \
                 ((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta))
-            if min(p1[0], p2[0]) < x + m * math.cos(theta) < max(p1[0], p2[0]) and \
-                min(p1[1], p2[1]) < y + m * math.sin(theta) < max(p1[1], p2[1]):
+            if m > 0  and min(p1[0], p2[0]) <= x + m * math.cos(theta) <= max(p1[0], p2[0]) and \
+                min(p1[1], p2[1]) <= y + m * math.sin(theta) <= max(p1[1], p2[1]):
                 candidate_walls.append(wall)
                 candidate_m.append(m)
-    print(candidate_m)
+    # print(candidate_m)
     target_index = np.argmin(candidate_m)
     target_wall = candidate_walls[target_index]
-    print(target_wall)
+    # print(target_wall)
     target_m = candidate_m[target_index]
     probability = math.e ** (-(z - target_m)**2 / (2*std_sensor**2)) + K
     return probability
