@@ -143,6 +143,7 @@ def navigateToWaypoint(X, Y):
                                         particle[1], 
                                         particle[2],
                                         z)
+            print(prob, end='')
             particle[3] *= prob
         print(particles[:, 3])
         particles[:, 3] = particles[:, 3] / np.sum(particles[:, 3])
