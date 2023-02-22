@@ -204,7 +204,7 @@ def calculate_likelihood(x, y, theta, z):
                 min(p1[1], p2[1]) <= y + m * math.sin(theta) <= max(p1[1], p2[1]):
                 candidate_walls.append(wall)
                 candidate_m.append(m)
-    # print(candidate_m)
+    print(candidate_m)
     target_index = np.argmin(candidate_m)
     target_wall = candidate_walls[target_index]
     # print(target_wall)
