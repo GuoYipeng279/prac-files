@@ -53,7 +53,7 @@ wall_h = (point_H, point_O)
 walls = [wall_a, wall_b, wall_c, wall_d, wall_e, wall_f, wall_g, wall_h]
 
 particles = np.zeros([100, 4])
-particles += [0, 0, 0, 1/total_particles]
+particles += [84, 30, 0, 1/total_particles]
 robot_position = [84, 30, 0]
 
 my_canvas = Canvas()
@@ -123,8 +123,8 @@ def navigateToWaypoint(X, Y):
             current_f_sigma = f_sigma * (distance / (distance_moved))
             e = random.gauss(0, current_e_sigma)
             f = random.gauss(0, current_f_sigma)
-            particle[0] += (distance+e)*math.cos(particle[2])
-            particle[1] += (distance+e)*math.sin(particle[2])
+            particle[0] += (distance_moved+e)*math.cos(particle[2])
+            particle[1] += (distance_moved+e)*math.sin(particle[2])
             particle[2] += f
             measures = []
             while True:
