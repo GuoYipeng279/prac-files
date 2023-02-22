@@ -144,6 +144,7 @@ def navigateToWaypoint(X, Y):
                                         particle[2],
                                         z)
             particle[3] *= prob
+        print(particles[:, 3])
         particles[:, 3] = particles[:, 3] / np.sum(particles[:, 3])
         time.sleep(3)
         my_canvas.drawParticles(particles)
