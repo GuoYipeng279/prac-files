@@ -129,7 +129,7 @@ def navigateToWaypoint(X, Y):
             while True:
                 try:
                     v = BP.get_sensor(BP.PORT_1)
-                    # print(v)                         # print the distance in CM
+                    print(v)                         # print the distance in CM
                     measures.append(v)
                     if len(measures) == 10:
                         break
