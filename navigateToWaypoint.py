@@ -73,24 +73,24 @@ def navigateToWaypoint(X, Y):
     if beta != 0:
         rot(-beta * 180 / math.pi, 30)
         # BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
+        measures = []
+        while True:
+            try:
+                v = BP.get_sensor(BP.PORT_1)
+                # print(v)                         # print the distance in CM
+                measures.append(v)
+                if len(measures) == 10:
+                    # print(measures)
+                    break
+            except brickpi3.SensorError as error:
+                print(error)
+            time.sleep(0.01)
+            z = np.median(measures) + sonar_positioin_offset
         for particle in particles:
             current_g_sigma = g_sigma * (alpha / (-math.pi/2))
             g = random.gauss(0, current_g_sigma)
             particle[2] += beta + g
-            measures = []
             sonar_positioin_offset = 0
-            while True:
-                try:
-                    v = BP.get_sensor(BP.PORT_1)
-                    # print(v)                         # print the distance in CM
-                    measures.append(v)
-                    if len(measures) == 10:
-                        # print(measures)
-                        break
-                except brickpi3.SensorError as error:
-                    print(error)
-                time.sleep(0.1)
-            z = np.median(measures) + sonar_positioin_offset
             prob = calculate_likelihood(particle[0],
                                         particle[1],
                                         particle[2],
@@ -117,6 +117,20 @@ def navigateToWaypoint(X, Y):
         else:
             go(distance, 10)
             distance_moved = distance
+            
+        measures = []
+        while True:
+            try:
+                v = BP.get_sensor(BP.PORT_1)
+                print(v)                         # print the distance in CM
+                measures.append(v)
+                if len(measures) > 10:
+                    break
+            except brickpi3.SensorError as error:
+                print(error)
+            time.sleep(0.02)
+            z = np.median(measures) + sonar_positioin_offset
+            
         for particle in particles:
             current_e_sigma = e_sigma * (distance / (distance_moved))
             current_f_sigma = f_sigma * (distance / (distance_moved))
@@ -125,18 +139,7 @@ def navigateToWaypoint(X, Y):
             particle[0] += (distance_moved+e)*math.cos(particle[2])
             particle[1] += (distance_moved+e)*math.sin(particle[2])
             particle[2] += f
-            measures = []
-            while True:
-                try:
-                    v = BP.get_sensor(BP.PORT_1)
-                    print(v)                         # print the distance in CM
-                    measures.append(v)
-                    if len(measures) == 10:
-                        break
-                except brickpi3.SensorError as error:
-                    print(error)
-                time.sleep(0.02)
-            z = np.median(measures) + sonar_positioin_offset
+            
             prob = calculate_likelihood(particle[0], 
                                         particle[1], 
                                         particle[2],
