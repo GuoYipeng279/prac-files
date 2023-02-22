@@ -64,7 +64,7 @@ def go(distance, speed=10):
             BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
             BP.set_motor_dps(BP.PORT_B, 0)
             BP.set_motor_dps(BP.PORT_D, 0)
-            BP.reset_all()
+            # BP.reset_all()
             break
         time.sleep(0.02)
 
@@ -79,7 +79,9 @@ def rot(degree, velocity=30):
         if time.time() - start >= timing:
             BP.offset_motor_encoder(BP.PORT_D, BP.get_motor_encoder(BP.PORT_D)) # reset encoder A
             BP.offset_motor_encoder(BP.PORT_B, BP.get_motor_encoder(BP.PORT_B))
-            BP.reset_all()
+            # BP.reset_all()
+            BP.set_motor_dps(BP.PORT_B, 0)
+            BP.set_motor_dps(BP.PORT_D, 0)
             break
         time.sleep(0.02)
 # jdwio

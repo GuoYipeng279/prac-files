@@ -81,7 +81,6 @@ def navigateToWaypoint(X, Y):
             sonar_positioin_offset = 0
             while True:
                 try:
-                    BP.reset_all()
                     v = BP.get_sensor(BP.PORT_1)
                     # print(v)                         # print the distance in CM
                     measures.append(v)
@@ -129,7 +128,6 @@ def navigateToWaypoint(X, Y):
             measures = []
             while True:
                 try:
-                    BP.reset_all()
                     v = BP.get_sensor(BP.PORT_1)
                     # print(v)                         # print the distance in CM
                     measures.append(v)
