@@ -31,7 +31,7 @@ e_sigma = 1
 f_sigma = 0.01
 g_sigma = 0.01
 d = 10
-total_particles = 100.0
+total_particles = 100
 
 point_O = (0, 0)
 point_A = (0, 168)
