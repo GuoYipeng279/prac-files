@@ -218,6 +218,7 @@ def calculate_likelihood(x, y, theta, z):
                 candidate_walls.append(wall)
                 candidate_m.append(m)
     print(candidate_m)
+    print(candidate_walls)
     target_index = np.argmin(np.absolute(candidate_m))
     target_wall = candidate_walls[target_index]
     print(target_wall)
