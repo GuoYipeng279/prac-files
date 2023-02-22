@@ -7,6 +7,7 @@ import brickpi3
 from particleDataStructures import Map
 BP = brickpi3.BrickPi3()
 
+BP.reset_all()
 BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
 # while True:
 #         # read and display the sensor value
@@ -94,43 +95,44 @@ def navigateToWaypoint(X, Y):
     alpha = -math.atan2(dy, dx)
     beta = alpha - robot_position[2]
     print(beta * 180 / math.pi)
-    rot(-beta * 180 / math.pi, 30)
-    # BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
-    particle_list = []
-    for particle in particles:
-        # scale g_sigma according to alpha and (-math.pi/2)
-        current_g_sigma = g_sigma * (alpha / (-math.pi/2))
-        g = random.gauss(0, current_g_sigma)
-        particle[2] += beta + g
-        measures = []
-        sonar_positioin_offset = 0
-        while True:
-            try:
-                v = BP.get_sensor(BP.PORT_1)
-                # print(v)                         # print the distance in CM
-                measures.append(v)
-                if len(measures) == 10:
-                    break
-            except brickpi3.SensorError as error:
-                print(error)
-            time.sleep(0.02)     
-        z = np.median(measures) + sonar_positioin_offset
-        prob = calculate_likelihood(particle[0]/scale - displacement, 
-                                    map_size+displacement - particle[1]/scale, 
-                                    particle[2],
-                                    z)
-        particle[3] *= prob
-        particle_tuple = (particle[0], particle[1], particle[2])
-        particle_list.append(particle_tuple)
-    # print ("drawParticles:" + str(tuple(particle_list)))
-    
-    # normalize
-    particles[:, 3] = particles[:, 3] / np.sum(particles[:, 3])
-    
-    degree = 0 
-    for particle in particles:
-        degree += particle[2] * particle[3]
-    robot_position[2] = degree
+    if beta != 0:
+        rot(-beta * 180 / math.pi, 30)
+        # BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
+        particle_list = []
+        for particle in particles:
+            # scale g_sigma according to alpha and (-math.pi/2)
+            current_g_sigma = g_sigma * (alpha / (-math.pi/2))
+            g = random.gauss(0, current_g_sigma)
+            particle[2] += beta + g
+            measures = []
+            sonar_positioin_offset = 0
+            while True:
+                try:
+                    v = BP.get_sensor(BP.PORT_1)
+                    # print(v)                         # print the distance in CM
+                    measures.append(v)
+                    if len(measures) == 10:
+                        break
+                except brickpi3.SensorError as error:
+                    print(error)
+                time.sleep(0.02)     
+            z = np.median(measures) + sonar_positioin_offset
+            prob = calculate_likelihood(particle[0]/scale - displacement, 
+                                        map_size+displacement - particle[1]/scale, 
+                                        particle[2],
+                                        z)
+            particle[3] *= prob
+            particle_tuple = (particle[0], particle[1], particle[2])
+            particle_list.append(particle_tuple)
+        # print ("drawParticles:" + str(tuple(particle_list)))
+        
+        # normalize
+        particles[:, 3] = particles[:, 3] / np.sum(particles[:, 3])
+        
+        degree = 0 
+        for particle in particles:
+            degree += particle[2] * particle[3]
+        robot_position[2] = degree
 
     time.sleep(3)
     while distance > 0:
