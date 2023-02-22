@@ -207,20 +207,20 @@ def calculate_likelihood(x, y, theta, z):
                 ((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta))
             if min(p1[0], p2[0]) <= x + m * math.cos(theta) <= max(p1[0], p2[0]) and \
                 min(p1[1], p2[1]) <= y + m * math.sin(theta) <= max(p1[1], p2[1]):
-                print(m)
-                print(walls.index(wall))
-                print('min x: ', min(p1[0], p2[0]))
-                print(x + m * math.cos(theta))
-                print('max x: ', max(p1[0], p2[0]))
-                print('min y: ', min(p1[1], p2[1]))
-                print(y + m * math.sin(theta))
-                print('max y: ', max(p1[1], p2[1]))
+                # print(m)
+                # print(walls.index(wall))
+                # print('min x: ', min(p1[0], p2[0]))
+                # print(x + m * math.cos(theta))
+                # print('max x: ', max(p1[0], p2[0]))
+                # print('min y: ', min(p1[1], p2[1]))
+                # print(y + m * math.sin(theta))
+                # print('max y: ', max(p1[1], p2[1]))
                 candidate_walls.append(wall)
                 candidate_m.append(m)
     print(candidate_m)
     target_index = np.argmin(np.absolute(candidate_m))
     target_wall = candidate_walls[target_index]
-    # print(target_wall)
+    print(target_wall)
     target_m = candidate_m[target_index]
     probability = math.e ** (-(z - target_m)**2 / (2*std_sensor**2)) + K
     return probability
