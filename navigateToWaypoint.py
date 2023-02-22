@@ -156,7 +156,7 @@ def navigateToWaypoint(X, Y):
         sum_deg += particle[2] * particle[3]
     robot_position = [sum_x, sum_y, sum_deg]
     print(robot_position)
-    particles = resampling(particles)
+    # particles = resampling(particles)
 
 def calculate_likelihood(x, y, theta, z):
     std_sensor = 1
