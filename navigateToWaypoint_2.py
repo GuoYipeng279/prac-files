@@ -190,6 +190,7 @@ def navigateToWaypoint(X, Y):
     particles = resampling(particles)
 
 def calculate_likelihood(x, y, theta, z):
+    print(x, y, theta)
     std_sensor = 1
     K = 0
     candidate_walls = []
