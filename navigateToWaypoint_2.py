@@ -111,6 +111,7 @@ def navigateToWaypoint(X, Y):
             sonar_positioin_offset = 0
             while True:
                 try:
+                    BP.reset_all()
                     v = BP.get_sensor(BP.PORT_1)
                     # print(v)                         # print the distance in CM
                     measures.append(v)
@@ -160,6 +161,7 @@ def navigateToWaypoint(X, Y):
             measures = []
             while True:
                 try:
+                    BP.reset_all()
                     v = BP.get_sensor(BP.PORT_1)
                     # print(v)                         # print the distance in CM
                     measures.append(v)
@@ -217,12 +219,12 @@ def calculate_likelihood(x, y, theta, z):
                 # print('max y: ', max(p1[1], p2[1]))
                 candidate_walls.append(wall)
                 candidate_m.append(m)
-    print(candidate_m)
-    print(candidate_walls)
+    # print(candidate_m)
+    # print(candidate_walls)
     if len(candidate_walls) > 0 :
         target_index = np.argmin(candidate_m)
         target_wall = candidate_walls[target_index]
-        print(target_wall)
+        # print(target_wall)
         target_m = candidate_m[target_index]
         probability = math.e ** (-(z - target_m)**2 / (2*std_sensor**2)) + K
     else:
