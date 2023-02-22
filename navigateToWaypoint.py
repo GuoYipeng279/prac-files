@@ -1,3 +1,5 @@
+from __future__ import print_function
+from __future__ import division
 import math
 import time
 import numpy as np
@@ -5,6 +7,7 @@ import random
 import brickpi3
 from Zhengfangxing import go, rot
 from particleDataStructures import Map, Canvas
+
 BP = brickpi3.BrickPi3()
 
 BP.reset_all()

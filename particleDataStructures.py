@@ -1,7 +1,8 @@
 #!/usr/bin/env python 
 
 # Some suitable functions and data structures for drawing a map and particles
-
+from __future__ import print_function
+from __future__ import division
 import time
 import random
 import math
