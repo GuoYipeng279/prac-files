@@ -168,18 +168,18 @@ def calculate_likelihood(x, y, theta, z):
         p1 = wall[0]
         p2 = wall[1]
         # print((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta))
-        if (p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta) > 1e-2:
+        if abs((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta)) > 1e-4:
             m = ((p2[1]-p1[1]) * (p1[0]-x) - (p2[0]-p1[0])*(p1[1]-y)) /  \
                 ((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta))
-            print('m:',m,' theta:',theta,' x:',x,' y:',y)
-            print("min x: ", min(p1[0], p2[0]))
-            print("max x: ", max(p1[0], p2[0]))
-            print(x + m * math.cos(theta))
-            print("min y: ", min(p1[1], p2[1]))
-            print("max y: ", max(p1[1], p2[1]))
-            print(y + m * math.sin(theta))
-            if m > 0 and min(p1[0], p2[0]) < x + m * math.cos(theta) < max(p1[0], p2[0]) and \
-                min(p1[1], p2[1]) < y + m * math.sin(theta) < max(p1[1], p2[1]):
+            # print('m:',m,' theta:',theta,' x:',x,' y:',y)
+            # print("min x: ", min(p1[0], p2[0]))
+            # print("max x: ", max(p1[0], p2[0]))
+            # print(x + m * math.cos(theta))
+            # print("min y: ", min(p1[1], p2[1]))
+            # print("max y: ", max(p1[1], p2[1]))
+            # print(y + m * math.sin(theta))
+            if m > 0 and min(p1[0], p2[0]) <= x + m * math.cos(theta) <= max(p1[0], p2[0]) and \
+                min(p1[1], p2[1]) <= y + m * math.sin(theta) <= max(p1[1], p2[1]):
                 candidate_walls.append(wall)
                 candidate_m.append(m)
     if len(candidate_walls) > 0:
