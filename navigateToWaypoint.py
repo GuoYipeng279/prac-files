@@ -117,7 +117,7 @@ def navigateToWaypoint(X, Y):
         else:
             go(distance, 10)
             distance_moved = distance
-            
+
         measures = []
         while True:
             try:
@@ -136,8 +136,8 @@ def navigateToWaypoint(X, Y):
             current_f_sigma = f_sigma * (distance / (distance_moved))
             e = random.gauss(0, current_e_sigma)
             f = random.gauss(0, current_f_sigma)
-            particle[0] += (distance_moved+e)*math.cos(particle[2])
-            particle[1] += (distance_moved+e)*math.sin(particle[2])
+            # particle[0] += (distance_moved+e)*math.cos(particle[2])
+            # particle[1] += (distance_moved+e)*math.sin(particle[2])
             particle[2] += f
             
             prob = calculate_likelihood(particle[0], 
