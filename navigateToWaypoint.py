@@ -91,10 +91,7 @@ def navigateToWaypoint(X, Y):
             g = random.gauss(0, current_g_sigma)
             particle[2] += beta + g
             sonar_positioin_offset = 0
-            prob = calculate_likelihood(particle[0],
-                                        particle[1],
-                                        particle[2],
-                                        z)
+            prob = calculate_likelihood(particle[0], particle[1], particle[2], z)
             particle[3] *= prob
 
         # normalize
@@ -104,10 +101,9 @@ def navigateToWaypoint(X, Y):
         for particle in particles:
             degree += particle[2] * particle[3]
         robot_position[2] = degree
-    my_canvas.drawParticles(particles)
+        my_canvas.drawParticles(particles)
+        particles = resampling(particles)
 
-    particles = resampling(particles)
-    
     time.sleep(2)
     while distance > 0:
         if distance > 20:
@@ -210,6 +206,8 @@ def resampling(old_particles):
     new_particles[:,3] = 1/total_particles
     return new_particles
 
+
+my_canvas.drawParticles(particles)
 aims = [(180, 30), (180, 54), (138, 54), (138, 168), (114, 168), (114, 84), (84, 84), (84, 30)]
 for aim in aims:
     try:
