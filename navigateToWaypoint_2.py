@@ -28,12 +28,12 @@ displacement = 0.05*map_size
 scale = canvas_size/(map_size+2 * displacement)
 # displacement = 10
 
-e_sigma = 0 * scale
-f_sigma = 0.0
-g_sigma = 0.0
-# e_sigma = 1 * scale
-# f_sigma = 0.01
-# g_sigma = 0.01
+# e_sigma = 0 * scale
+# f_sigma = 0.0
+# g_sigma = 0.0
+e_sigma = 0.1 * scale
+f_sigma = 0.01
+g_sigma = 0.01
 d = 10*scale
 total_particles = 100.0
 
@@ -219,11 +219,14 @@ def calculate_likelihood(x, y, theta, z):
                 candidate_m.append(m)
     print(candidate_m)
     print(candidate_walls)
-    target_index = np.argmin(np.absolute(candidate_m))
-    target_wall = candidate_walls[target_index]
-    print(target_wall)
-    target_m = candidate_m[target_index]
-    probability = math.e ** (-(z - target_m)**2 / (2*std_sensor**2)) + K
+    if len(candidate_walls) > 0 :
+        target_index = np.argmin(candidate_m)
+        target_wall = candidate_walls[target_index]
+        print(target_wall)
+        target_m = candidate_m[target_index]
+        probability = math.e ** (-(z - target_m)**2 / (2*std_sensor**2)) + K
+    else:
+        probability = 1
     return probability
 
 
