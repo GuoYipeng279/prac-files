@@ -124,7 +124,7 @@ def navigateToWaypoint(X, Y):
             particle[3] *= prob
             particle_tuple = (particle[0], particle[1], particle[2])
             particle_list.append(particle_tuple)
-        # print ("drawParticles:" + str(tuple(particle_list)))
+        print ("drawParticles:" + str(tuple(particle_list)))
         
         # normalize
         particles[:, 3] = particles[:, 3] / np.sum(particles[:, 3])
@@ -176,7 +176,7 @@ def navigateToWaypoint(X, Y):
         # normalize
         particles[:, 3] = particles[:, 3] / np.sum(particles[:, 3])
         time.sleep(3)
-        # print ("drawParticles:" + str(tuple(particle_list)))
+        print ("drawParticles:" + str(tuple(particle_list)))
     
     sum_x, sum_y, sum_deg = 0, 0, 0
     for particle in particles:
@@ -202,7 +202,7 @@ def calculate_likelihood(x, y, theta, z):
         if (p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta) != 0:
             m = ((p2[1]-p1[1]) * (p1[0]-x) - (p2[0]-p1[0])*(p1[1]-y)) /  \
                 ((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta))
-            if m > 0  and min(p1[0], p2[0]) <= x + m * math.cos(theta) <= max(p1[0], p2[0]) and \
+            if min(p1[0], p2[0]) <= x + m * math.cos(theta) <= max(p1[0], p2[0]) and \
                 min(p1[1], p2[1]) <= y + m * math.sin(theta) <= max(p1[1], p2[1]):
                 print(m)
                 print(walls.index(wall))
@@ -215,7 +215,7 @@ def calculate_likelihood(x, y, theta, z):
                 candidate_walls.append(wall)
                 candidate_m.append(m)
     print(candidate_m)
-    target_index = np.argmin(candidate_m)
+    target_index = np.argmin(np.absolute(candidate_m))
     target_wall = candidate_walls[target_index]
     # print(target_wall)
     target_m = candidate_m[target_index]
