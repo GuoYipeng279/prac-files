@@ -111,6 +111,9 @@ def navigateToWaypoint(X, Y):
                 z = inp[inp_incre]
                 inp_incre += 1
 
+            global nn
+            nn = 0
+            
             for particle in particles:
                 current_g_sigma = g_sigma * (alpha / (-math.pi/2))
                 g = random.gauss(0, current_g_sigma)
@@ -160,6 +163,8 @@ def navigateToWaypoint(X, Y):
             z = inp[inp_incre]
             inp_incre += 1
 
+        global nn
+        nn = 0
         for particle in particles:
             current_e_sigma = e_sigma * (distance / (distance_moved))
             current_f_sigma = f_sigma * (distance / (distance_moved))
@@ -193,7 +198,9 @@ def navigateToWaypoint(X, Y):
         distance = math.sqrt(dx**2 + dy**2)
         particles = resampling(particles)
 
+nn = 0
 def calculate_likelihood(x, y, theta, z):
+    global nn
     # theta = -theta
     std_sensor = 1
     K = 0
@@ -222,13 +229,15 @@ def calculate_likelihood(x, y, theta, z):
                 candidate_walls.append(wall)
                 candidate_m.append(m)
     if len(candidate_walls) > 0:
-        print('candidate m: ', candidate_m)
         target_index = np.argmin(candidate_m)
         # target_wall = candidate_walls[target_index]
         # print(target_wall)
         target_m = candidate_m[target_index]
         probability = math.e ** (-(z - target_m)**2 / (2*std_sensor**2)) + K
-        print('target_m:',target_m, ' z:',z, ' probability:',probability)
+        if nn == 0:
+            print('candidate m: ', candidate_m)
+            print('target_m:',target_m, ' z:',z, ' probability:',probability)
+            nn += 1
     else:
         probability = 0
     return probability
