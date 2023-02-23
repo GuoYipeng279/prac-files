@@ -147,7 +147,10 @@ def navigateToWaypoint(X, Y):
                                         particle[2],
                                         z)
             # print(prob, end='')
+            print('particle',particle[3], end=' ')
+            print('prob',prob)
             particle[3] *= prob
+        print()
         print(particles[:, 3])
         particles[:, 3] = particles[:, 3] / np.sum(particles[:, 3])
         time.sleep(3)
