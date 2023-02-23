@@ -164,7 +164,6 @@ def navigateToWaypoint(X, Y):
             z = inp[inp_incre]
             inp_incre += 1
 
-        global nn
         nn = 0
         for particle in particles:
             current_e_sigma = e_sigma * (distance / (distance_moved))
