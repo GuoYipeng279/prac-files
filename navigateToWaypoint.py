@@ -92,6 +92,7 @@ def navigateToWaypoint(X, Y):
         # print(beta * 180 / math.pi)
         print("beta: ", beta,'dy:', dy,'dx:', dx, 'alpha:',alpha)
         if abs(beta) >= 1 * math.pi/180:
+            print(beta, alpha)
             rot(beta * 180 / math.pi, 30)
             # BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
             measures = []
@@ -207,8 +208,8 @@ def navigateToWaypoint(X, Y):
 def calculate_likelihood(x, y, theta, z):
     global nn
     # theta = -theta
-    std_sensor = 1
-    K = 0
+    std_sensor = 2
+    K = 1e-5
     candidate_walls = []
     candidate_m = []
     for wall in walls:
