@@ -215,6 +215,7 @@ def resampling(old_particles):
                 if cumulative_weight[j-1] < p <= cumulative_weight[j]:
                     new_particles[i] = old_particles[j]
     new_particles[:,3] = 1/total_particles
+    print(new_particles)
     return new_particles
 
 
