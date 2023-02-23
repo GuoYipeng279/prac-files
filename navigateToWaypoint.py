@@ -188,6 +188,7 @@ def calculate_likelihood(x, y, theta, z):
         # print(target_wall)
         target_m = candidate_m[target_index]
         probability = math.e ** (-(z - target_m)**2 / (2*std_sensor**2)) + K
+        print('target_m:',target_m, ' z:',z, ' probability:',probability)
     else:
         probability = 0
     return probability
