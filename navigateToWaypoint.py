@@ -196,6 +196,7 @@ def calculate_likelihood(x, y, theta, z):
         if abs((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta)) > 1e-2:
             m = ((p2[1]-p1[1]) * (p1[0]-x) - (p2[0]-p1[0])*(p1[1]-y)) /  \
                 ((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta))
+            print('wall:', wall, ' m:', m)
             # print('m:',m,' theta:',theta,' x:',x,' y:',y, ' z:',z)
             # print("min x: ", min(p1[0], p2[0]))
             # print("max x: ", max(p1[0], p2[0]))
