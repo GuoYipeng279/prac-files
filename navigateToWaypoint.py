@@ -213,9 +213,10 @@ def calculate_likelihood(x, y, theta, z):
         if abs((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta)) > 1e-2:
             m = ((p2[1]-p1[1]) * (p1[0]-x) - (p2[0]-p1[0])*(p1[1]-y)) /  \
                 ((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta))
-            print('wall:', wall, ' m:', m)
-            if wall == ((210, 0), (0, 0)):
-                print('111',(p2[1]-p1[1]) * (p1[0]-x),' 222',(p2[0]-p1[0])*(p1[1]-y),' 333',(p2[1]-p1[1])*math.cos(theta),' 444',(p2[0]-p1[0])*math.sin(theta))
+            if nn == 0:
+                print('wall:', wall, ' m:', m)
+                if wall == ((210, 0), (0, 0)):
+                    print('111',(p2[1]-p1[1]) * (p1[0]-x),' 222',(p2[0]-p1[0])*(p1[1]-y),' 333',(p2[1]-p1[1])*math.cos(theta),' 444',(p2[0]-p1[0])*math.sin(theta))
             # print('m:',m,' theta:',theta,' x:',x,' y:',y, ' z:',z)
             # print("min x: ", min(p1[0], p2[0]))
             # print("max x: ", max(p1[0], p2[0]))
@@ -260,7 +261,7 @@ def resampling(old_particles):
                 if cumulative_weight[j-1] < p <= cumulative_weight[j]:
                     new_particles[i] += old_particles[j]
     new_particles[:,3] = 1/100.0
-    print("new: ", new_particles)
+    print("new: ", new_particles[0])
     return new_particles
 
 
