@@ -60,7 +60,7 @@ walls = [wall_a, wall_b, wall_c, wall_d, wall_e, wall_f, wall_g, wall_h]
 particles = np.zeros([100, 4])
 particles += [84, 30, 0, 1/total_particles]
 robot_position = [84, 30, 0]
-inp = [126,106,86,66,46,26,54,34]
+inp = [106,86,66,46,26,54,34]
 inp_incre = 0
 
 my_canvas = Canvas()
@@ -101,7 +101,7 @@ def navigateToWaypoint(X, Y):
             else:
                 z = inp[inp_incre]
                 inp_incre += 1
-                
+
             for particle in particles:
                 current_g_sigma = g_sigma * (alpha / (-math.pi/2))
                 g = random.gauss(0, current_g_sigma)
