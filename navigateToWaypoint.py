@@ -36,12 +36,12 @@ BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
 # except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
 #     BP.reset_all()
 
-e_sigma = 0
-f_sigma = 0.0
-g_sigma = 0.0
-# e_sigma = 0.25
-# f_sigma = 0.01
-# g_sigma = 0.01
+# e_sigma = 0
+# f_sigma = 0.0
+# g_sigma = 0.0
+e_sigma = 0.01
+f_sigma = 0.01
+g_sigma = 0.01
 d = 10
 total_particles = 100.0
 
