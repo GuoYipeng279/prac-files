@@ -72,7 +72,7 @@ def navigateToWaypoint(X, Y):
     dx, dy = X - robot_position[0], Y - robot_position[1]
     # print("dx: ", dx, "dy: ", dy)
     distance = math.sqrt(dx**2 + dy**2)
-    while distance > 0:
+    while distance > 5:
         alpha = -math.atan2(dy, dx)
         beta = alpha - robot_position[2]
         # print(beta * 180 / math.pi)
