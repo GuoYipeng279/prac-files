@@ -60,7 +60,7 @@ walls = [wall_a, wall_b, wall_c, wall_d, wall_e, wall_f, wall_g, wall_h]
 particles = np.zeros([100, 4])
 particles += [84, 30, 0, 1/total_particles]
 robot_position = [84, 30, 0]
-inp = [106,86,66,46,30,54,34]
+inp = [106,86,66,46,30,54,34,30,180]
 inp_incre = 0
 
 my_canvas = Canvas()
