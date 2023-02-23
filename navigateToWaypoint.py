@@ -74,7 +74,7 @@ def navigateToWaypoint(X, Y):
     dx, dy = X - robot_position[0], Y - robot_position[1]
     # print("dx: ", dx, "dy: ", dy)
     distance = math.sqrt(dx**2 + dy**2)
-    while distance > 5:
+    while distance > 1:
         alpha = -math.atan2(dy, dx)
         beta = alpha - robot_position[2]
         # print(beta * 180 / math.pi)
@@ -107,6 +107,7 @@ def navigateToWaypoint(X, Y):
                 prob = calculate_likelihood(particle[0], 
                                             particle[1], 
                                             particle[2], z)
+                print("105: ", prob)
                 particle[3] *= prob
 
             # normalize
