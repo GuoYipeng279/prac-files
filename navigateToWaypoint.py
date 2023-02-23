@@ -235,7 +235,7 @@ def calculate_likelihood(x, y, theta, z):
         # target_wall = candidate_walls[target_index]
         # print(target_wall)
         target_m = candidate_m[target_index]
-        probability = math.e ** (-(z - target_m)**2 / (2*std_sensor**2)) + K
+        probability = math.e ** (-(float(z) - target_m)**2 / (2*std_sensor**2)) + K
         if nn == 0:
             print('candidate m: ', candidate_m)
             print('target_m:',target_m, ' z:',z, ' probability:',probability)
