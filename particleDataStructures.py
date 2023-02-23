@@ -1,8 +1,8 @@
 #!/usr/bin/env python 
 
 # Some suitable functions and data structures for drawing a map and particles
-from __future__ import print_function
-from __future__ import division
+# from __future__ import print_function
+# from __future__ import division
 import time
 import random
 import math
@@ -41,8 +41,8 @@ class Canvas:
     def drawParticles(self,data):
         display = [(self.__screenX(d[0]),self.__screenY(d[1]), d[2], d[3]) for d in data]
         # display = [(self.__screenX(d[0]),self.__screenY(d[1])) + d[2:] for d in data];
-        print ("drawParticles:" + str(display));
-        # print "drawParticles:" + str(display);
+        # print ("drawParticles:" + str(display));
+        print "drawParticles:" + str(display);
 
     def __screenX(self,x):
         return (x + self.margin)*self.scale
