@@ -32,7 +32,7 @@ BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
 # e_sigma = 0
 # f_sigma = 0.0
 # g_sigma = 0.0
-e_sigma = 1 
+e_sigma = 0.25
 f_sigma = 0.01
 g_sigma = 0.01
 d = 10
@@ -68,11 +68,10 @@ def navigateToWaypoint(X, Y):
     global particles
     # print(X, Y)
     # print(robot_position[0], robot_position[1])
-    sonar_positioin_offset = 1
+    sonar_positioin_offset = 0
     dx, dy = X - robot_position[0], Y - robot_position[1]
     # print("dx: ", dx, "dy: ", dy)
     distance = math.sqrt(dx**2 + dy**2)
-    sonar_positioin_offset = 0
     while distance > 0:
         alpha = -math.atan2(dy, dx)
         beta = alpha - robot_position[2]
