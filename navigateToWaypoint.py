@@ -71,7 +71,7 @@ def navigateToWaypoint(X, Y):
     # print(X, Y)
     # print(robot_position[0], robot_position[1])
     sonar_positioin_offset = 0
-    dx, dy = X - robot_position[0], Y - robot_position[1]
+    dx, dy = X - robot_position[0], robot_position[1] - Y
     # print("dx: ", dx, "dy: ", dy)
     distance = math.sqrt(dx**2 + dy**2)
     while distance > 1:
@@ -179,7 +179,7 @@ def navigateToWaypoint(X, Y):
             sum_deg += particle[2] * particle[3]
         robot_position = [sum_x, sum_y, sum_deg]
         # print(robot_position)
-        dx, dy = X - robot_position[0], Y - robot_position[1]
+        dx, dy = X - robot_position[0], robot_position[1] - Y
         distance = math.sqrt(dx**2 + dy**2)
         particles = resampling(particles)
 
