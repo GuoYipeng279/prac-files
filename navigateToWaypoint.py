@@ -5,17 +5,17 @@ import time
 import numpy as np
 import random
 import brickpi3
-# from Zhengfangxing import go, rot
+from Zhengfangxing import go, rot
 from particleDataStructures import Map, Canvas
 
 BP = brickpi3.BrickPi3()
 
 nn = 0
-def go(x,y):
-    pass
+# def go(x,y):
+#     pass
 
-def rot(x,y):
-    pass
+# def rot(x,y):
+#     pass
 
 BP.reset_all()
 BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
