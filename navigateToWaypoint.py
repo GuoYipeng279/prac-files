@@ -95,10 +95,13 @@ def navigateToWaypoint(X, Y):
                     print(error)
                 time.sleep(0.01)
                 z = np.median(measures) + sonar_positioin_offset
+
             if inp_incre >= len(inp):
                 z = input("give me z: ")
             else:
                 z = inp[inp_incre]
+                inp_incre += 1
+                
             for particle in particles:
                 current_g_sigma = g_sigma * (alpha / (-math.pi/2))
                 g = random.gauss(0, current_g_sigma)
@@ -140,8 +143,13 @@ def navigateToWaypoint(X, Y):
                 print(error)
             time.sleep(0.02)
             z = np.median(measures) + sonar_positioin_offset
-        z = input("give me z: ")
-            
+
+        if inp_incre >= len(inp):
+            z = input("give me z: ")
+        else:
+            z = inp[inp_incre]
+            inp_incre += 1
+
         for particle in particles:
             current_e_sigma = e_sigma * (distance / (distance_moved))
             current_f_sigma = f_sigma * (distance / (distance_moved))
