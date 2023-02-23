@@ -147,7 +147,7 @@ def navigateToWaypoint(X, Y):
                                         particle[2],
                                         z)
             # print(prob, end='')
-            print(['particle', particle[3], 'prob', prob], end=' ')
+            print(['particle', particle[3], 'prob', prob])
             particle[3] *= prob
         print()
         print(particles[:, 3])
