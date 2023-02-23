@@ -67,51 +67,52 @@ def navigateToWaypoint(X, Y):
     # print(X, Y)
     # print(robot_position[0], robot_position[1])
     sonar_positioin_offset = 1
-    dx, dy = X - robot_position[0], robot_position[1] - Y
+    dx, dy = X - robot_position[0], Y - robot_position[1]
     # print("dx: ", dx, "dy: ", dy)
     distance = math.sqrt(dx**2 + dy**2)
-    alpha = -math.atan2(dy, dx)
-    beta = alpha - robot_position[2]
-    # print(beta * 180 / math.pi)
-    if beta != 0:
-        rot(-beta * 180 / math.pi, 30)
-        # BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
-        measures = []
-        while True:
-            try:
-                v = BP.get_sensor(BP.PORT_1)
-                # print(v)                         # print the distance in CM
-                measures.append(v)
-                if len(measures) == 10:
-                    # print(measures)
-                    break
-            except brickpi3.SensorError as error:
-                print(error)
-            time.sleep(0.01)
-            z = np.median(measures) + sonar_positioin_offset
-        for particle in particles:
-            current_g_sigma = g_sigma * (alpha / (-math.pi/2))
-            g = random.gauss(0, current_g_sigma)
-            particle[2] += beta + g
-            sonar_positioin_offset = 0
-            prob = calculate_likelihood(particle[0], particle[1], particle[2], z)
-            particle[3] *= prob
-
-        # normalize
-        particles[:, 3] = particles[:, 3] / np.sum(particles[:, 3])
-
-        degree = 0
-        for particle in particles:
-            degree += particle[2] * particle[3]
-        robot_position[2] = degree
-        my_canvas.drawParticles(particles)
-        particles = resampling(particles)
-
-    time.sleep(2)
     while distance > 0:
+        alpha = -math.atan2(dy, dx)
+        beta = alpha - robot_position[2]
+        # print(beta * 180 / math.pi)
+        if beta != 0:
+            rot(-beta * 180 / math.pi, 30)
+            # BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
+            measures = []
+            while True:
+                try:
+                    v = BP.get_sensor(BP.PORT_1)
+                    # print(v)                         # print the distance in CM
+                    measures.append(v)
+                    if len(measures) == 10:
+                        # print(measures)
+                        break
+                except brickpi3.SensorError as error:
+                    print(error)
+                time.sleep(0.01)
+                z = np.median(measures) + sonar_positioin_offset
+            for particle in particles:
+                current_g_sigma = g_sigma * (alpha / (-math.pi/2))
+                g = random.gauss(0, current_g_sigma)
+                particle[2] += beta + g
+                sonar_positioin_offset = 0
+                prob = calculate_likelihood(particle[0], 
+                                            particle[1], 
+                                            particle[2], z)
+                particle[3] *= prob
+
+            # normalize
+            particles[:, 3] = particles[:, 3] / np.sum(particles[:, 3])
+
+            degree = 0
+            for particle in particles:
+                degree += particle[2] * particle[3]
+            robot_position[2] = degree
+            my_canvas.drawParticles(particles)
+            particles = resampling(particles)
+        time.sleep(2)
+
         if distance > 20:
             go(20, 10)
-            distance -= 20
             distance_moved = 20
         else:
             go(distance, 10)
@@ -150,14 +151,15 @@ def navigateToWaypoint(X, Y):
         time.sleep(3)
         my_canvas.drawParticles(particles)
 
-    sum_x, sum_y, sum_deg = 0, 0, 0
-    for particle in particles:
-        sum_x += particle[0] * particle[3]
-        sum_y += particle[1] * particle[3]
-        sum_deg += particle[2] * particle[3]
-    robot_position = [sum_x, sum_y, sum_deg]
-    print(robot_position)
-    # particles = resampling(particles)
+        sum_x, sum_y, sum_deg = 0, 0, 0
+        for particle in particles:
+            sum_x += particle[0] * particle[3]
+            sum_y += particle[1] * particle[3]
+            sum_deg += particle[2] * particle[3]
+        robot_position = [sum_x, sum_y, sum_deg]
+        # print(robot_position)
+        dx, dy = X - robot_position[0], Y - robot_position[1]
+        particles = resampling(particles)
 
 def calculate_likelihood(x, y, theta, z):
     std_sensor = 1
