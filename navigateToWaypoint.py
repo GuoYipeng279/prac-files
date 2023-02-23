@@ -219,7 +219,7 @@ def resampling(old_particles):
     return new_particles
 
 
-my_canvas.drawParticles(particles)
+# my_canvas.drawParticles(particles)
 aims = [(180, 30), (180, 54), (138, 54), (138, 168), (114, 168), (114, 84), (84, 84), (84, 30)]
 for aim in aims:
     try:
