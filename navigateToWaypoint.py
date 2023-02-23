@@ -165,7 +165,7 @@ def navigateToWaypoint(X, Y):
             inp_incre += 1
 
         nn = 0
-        for particle in particles:
+        for i, particle in enumerate(particles):
             current_e_sigma = e_sigma * (distance / (distance_moved))
             current_f_sigma = f_sigma * (distance / (distance_moved))
             e = random.gauss(0, current_e_sigma)
@@ -179,7 +179,8 @@ def navigateToWaypoint(X, Y):
                                         particle[2],
                                         z)
             # print(prob, end='')
-            print(['particle', particle[3], 'prob', prob])
+            if i == 0:
+                print(['particle', particle[3], 'prob', prob])
             particle[3] *= prob
         print()
         print(particles[:, 3])
