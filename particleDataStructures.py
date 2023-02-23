@@ -39,7 +39,7 @@ class Canvas:
         print ("drawLine:" + str((x1,y1,x2,y2)))
 
     def drawParticles(self,data):
-        display = [tuple(self.__screenX(d[0]), self.__screenY(d[1]), d[2], d[3]) for d in data]
+        display = tuple([(self.__screenX(d[0]), self.__screenY(d[1]), d[2], d[3]) for d in data])
         # display = [(self.__screenX(d[0]),self.__screenY(d[1])) + d[2:] for d in data];
         print ("drawParticles:" + str(display));
         # print "drawParticles:" + str(display)
