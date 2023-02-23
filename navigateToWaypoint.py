@@ -69,6 +69,7 @@ particles += [84, 30, 0, 1/total_particles]
 robot_position = [84, 30, 0]
 inp = [106,86,66,46,30,54,34,30,180]
 inp_incre = 0
+hand_inp = False
 
 my_canvas = Canvas()
 
@@ -107,11 +108,12 @@ def navigateToWaypoint(X, Y):
                 time.sleep(0.01)
                 z = np.median(measures) + sonar_positioin_offset
 
-            if inp_incre >= len(inp):
-                z = input("give me z: ")
-            else:
-                z = inp[inp_incre]
-                inp_incre += 1
+            if hand_inp:
+                if inp_incre >= len(inp):
+                    z = input("give me z: ")
+                else:
+                    z = inp[inp_incre]
+                    inp_incre += 1
 
             global nn
             nn = 0
@@ -135,7 +137,7 @@ def navigateToWaypoint(X, Y):
                 degree += particle[2] * particle[3]
             robot_position[2] = degree
             print('robot_position:',robot_position)
-            # my_canvas.drawParticles(particles)
+            my_canvas.drawParticles(particles)
             particles = resampling(particles)
         time.sleep(2)
 
@@ -150,6 +152,7 @@ def navigateToWaypoint(X, Y):
         while True:
             try:
                 v = BP.get_sensor(BP.PORT_1)
+                if v == 255: v = 180
                 print(v)                         # print the distance in CM
                 measures.append(v)
                 if len(measures) > 10:
@@ -159,11 +162,12 @@ def navigateToWaypoint(X, Y):
             time.sleep(0.02)
             z = np.median(measures) + sonar_positioin_offset
 
-        if inp_incre >= len(inp):
-            z = input("give me z: ")
-        else:
-            z = inp[inp_incre]
-            inp_incre += 1
+        if hand_inp:
+            if inp_incre >= len(inp):
+                z = input("give me z: ")
+            else:
+                z = inp[inp_incre]
+                inp_incre += 1
 
         nn = 0
         for i, particle in enumerate(particles):
@@ -187,7 +191,7 @@ def navigateToWaypoint(X, Y):
         print(particles[:, 3])
         particles[:, 3] = particles[:, 3] / np.sum(particles[:, 3])
         time.sleep(3)
-        # my_canvas.drawParticles(particles)
+        my_canvas.drawParticles(particles)
 
         sum_x, sum_y, sum_deg = 0, 0, 0
         for particle in particles:
