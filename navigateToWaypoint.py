@@ -191,6 +191,7 @@ def calculate_likelihood(x, y, theta, z):
     for wall in walls:
         p1 = wall[0]
         p2 = wall[1]
+        print('theta194:', theta)
         # print((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta))
         if abs((p2[1]-p1[1])*math.cos(theta) - (p2[0]-p1[0])*math.sin(theta)) > 1e-2:
             m = ((p2[1]-p1[1]) * (p1[0]-x) - (p2[0]-p1[0])*(p1[1]-y)) /  \
