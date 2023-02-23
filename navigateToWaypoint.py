@@ -162,6 +162,7 @@ def navigateToWaypoint(X, Y):
         robot_position = [sum_x, sum_y, sum_deg]
         # print(robot_position)
         dx, dy = X - robot_position[0], Y - robot_position[1]
+        distance = math.sqrt(dx**2 + dy**2)
         particles = resampling(particles)
 
 def calculate_likelihood(x, y, theta, z):
