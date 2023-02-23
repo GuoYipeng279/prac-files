@@ -36,7 +36,7 @@ g_sigma = 0.0
 # f_sigma = 0.01
 # g_sigma = 0.01
 d = 10
-total_particles = 100
+total_particles = 100.0
 
 point_O = (0, 0)
 point_A = (0, 168)
@@ -201,25 +201,24 @@ def calculate_likelihood(x, y, theta, z):
     return probability
 
 def resampling(old_particles):
-    global total_particles
-    cumulative_weight =  np.zeros([total_particles])
+    cumulative_weight =  np.zeros([100])
     weights = old_particles[:, 3]
     cumulative_weight = np.cumsum(weights)
-    new_particles = np.zeros([total_particles, 4])
+    new_particles = np.zeros([100, 4])
     # for i in range(total_particles):
     #     weight = old_particles[i][3]
     #     cumulative_weight[i] += weight + cumulative_weight[-1]
     # print('cumulative:',  cumulative_weight)
-    for i in range(total_particles):
+    for i in range(100):
         p = np.random.random()
-        for j in range(total_particles):
+        for j in range(100):
             if j == 0:
                 if p <= cumulative_weight[j]:
                     new_particles[i] += old_particles[j]
             else:
                 if cumulative_weight[j-1] < p <= cumulative_weight[j]:
                     new_particles[i] += old_particles[j]
-    new_particles[:,3] = 1/total_particles
+    new_particles[:,3] = 1/100.0
     print("new: ", new_particles)
     return new_particles
 
