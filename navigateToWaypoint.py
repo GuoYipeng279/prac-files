@@ -81,6 +81,7 @@ def navigateToWaypoint(X, Y):
     dx, dy = X - robot_position[0], Y - robot_position[1]
     # print("dx: ", dx, "dy: ", dy)
     distance = math.sqrt(dx**2 + dy**2)
+    print('distance------:',distance)
     while distance > 1:
         alpha = -math.atan2(dy, dx)
         robot_position[2] %= 2*math.pi
@@ -134,7 +135,7 @@ def navigateToWaypoint(X, Y):
                 degree += particle[2] * particle[3]
             robot_position[2] = degree
             print('robot_position:',robot_position)
-            my_canvas.drawParticles(particles)
+            # my_canvas.drawParticles(particles)
             particles = resampling(particles)
         time.sleep(2)
 
@@ -186,7 +187,7 @@ def navigateToWaypoint(X, Y):
         print(particles[:, 3])
         particles[:, 3] = particles[:, 3] / np.sum(particles[:, 3])
         time.sleep(3)
-        my_canvas.drawParticles(particles)
+        # my_canvas.drawParticles(particles)
 
         sum_x, sum_y, sum_deg = 0, 0, 0
         for particle in particles:
