@@ -204,7 +204,8 @@ def resampling(old_particles):
     new_particles = np.zeros([total_particles, 4])
     for i in range(total_particles):
         weight = old_particles[i][3]
-        cumulative_weight[i] = weight + cumulative_weight[-1]
+        cumulative_weight[i] += weight + cumulative_weight[-1]
+    print('cumulative:',  cumulative_weight)
     for i in range(total_particles):
         p = np.random.random()
         for j in range(total_particles):
