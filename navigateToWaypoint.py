@@ -184,7 +184,7 @@ def navigateToWaypoint(X, Y):
             sum_y += particle[1] * particle[3]
             sum_deg += particle[2] * particle[3]
         robot_position = [sum_x, sum_y, sum_deg]
-        # print(robot_position)
+        print('robot_position:',robot_position)
         dx, dy = X - robot_position[0], Y - robot_position[1]
         distance = math.sqrt(dx**2 + dy**2)
         particles = resampling(particles)
