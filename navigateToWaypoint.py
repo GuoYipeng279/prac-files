@@ -89,7 +89,7 @@ def navigateToWaypoint(X, Y):
             robot_position[2] -= 2*math.pi
         beta = -(alpha - robot_position[2])
         # print(beta * 180 / math.pi)
-        print("beta: ", beta)
+        print("beta: ", beta,'dy:', dy,'dx:', dx, 'alpha:',alpha)
         if abs(beta) >= 1 * math.pi/180:
             rot(beta * 180 / math.pi, 30)
             # BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
