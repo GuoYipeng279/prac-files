@@ -76,11 +76,11 @@ def navigateToWaypoint(X, Y):
     distance = math.sqrt(dx**2 + dy**2)
     while distance > 1:
         alpha = -math.atan2(dy, dx)
-        beta = alpha - robot_position[2]
+        beta = -(alpha - robot_position[2])
         # print(beta * 180 / math.pi)
         print("beta: ", beta)
         if abs(beta) >= 1 * math.pi/180:
-            rot(-beta * 180 / math.pi, 30)
+            rot(beta * 180 / math.pi, 30)
             # BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
             measures = []
             while True:
@@ -184,7 +184,7 @@ def navigateToWaypoint(X, Y):
         particles = resampling(particles)
 
 def calculate_likelihood(x, y, theta, z):
-    theta = -theta
+    # theta = -theta
     std_sensor = 1
     K = 0
     candidate_walls = []
