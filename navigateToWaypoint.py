@@ -210,10 +210,10 @@ def resampling(old_particles):
         for j in range(total_particles):
             if j == 0:
                 if p <= cumulative_weight[j]:
-                    new_particles[i] = old_particles[j]
+                    new_particles[i] += old_particles[j]
             else:
                 if cumulative_weight[j-1] < p <= cumulative_weight[j]:
-                    new_particles[i] = old_particles[j]
+                    new_particles[i] += old_particles[j]
     new_particles[:,3] = 1/total_particles
     print(new_particles)
     return new_particles
