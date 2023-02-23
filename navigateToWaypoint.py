@@ -201,10 +201,12 @@ def calculate_likelihood(x, y, theta, z):
 def resampling(old_particles):
     global total_particles
     cumulative_weight =  np.zeros([total_particles])
+    weights = old_particles[:, 3]
+    cumulative_weight = np.cumsum(weights)
     new_particles = np.zeros([total_particles, 4])
-    for i in range(total_particles):
-        weight = old_particles[i][3]
-        cumulative_weight[i] += weight + cumulative_weight[-1]
+    # for i in range(total_particles):
+    #     weight = old_particles[i][3]
+    #     cumulative_weight[i] += weight + cumulative_weight[-1]
     print('cumulative:',  cumulative_weight)
     for i in range(total_particles):
         p = np.random.random()
