@@ -229,6 +229,8 @@ for aim in aims:
     try:
         x = aim[0]
         y = aim[1]
+        print('------------------------!!!!!')
+        print(x,y)
         navigateToWaypoint(x,y)
     except KeyboardInterrupt:  # except the program gets interrupted by Ctrl+C on the keyboard.
             BP.reset_all()
