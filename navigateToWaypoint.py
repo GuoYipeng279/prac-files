@@ -29,10 +29,12 @@ BP.set_sensor_type(BP.PORT_1, BP.SENSOR_TYPE.NXT_ULTRASONIC)
 # except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
 #     BP.reset_all()
 
-
-e_sigma = 1 
-f_sigma = 0.01
-g_sigma = 0.01
+e_sigma = 0
+f_sigma = 0.0
+g_sigma = 0.0
+# e_sigma = 1 
+# f_sigma = 0.01
+# g_sigma = 0.01
 d = 10
 total_particles = 100
 
@@ -70,6 +72,7 @@ def navigateToWaypoint(X, Y):
     dx, dy = X - robot_position[0], Y - robot_position[1]
     # print("dx: ", dx, "dy: ", dy)
     distance = math.sqrt(dx**2 + dy**2)
+    sonar_positioin_offset = 0
     while distance > 0:
         alpha = -math.atan2(dy, dx)
         beta = alpha - robot_position[2]
@@ -94,7 +97,7 @@ def navigateToWaypoint(X, Y):
                 current_g_sigma = g_sigma * (alpha / (-math.pi/2))
                 g = random.gauss(0, current_g_sigma)
                 particle[2] += beta + g
-                sonar_positioin_offset = 0
+                
                 prob = calculate_likelihood(particle[0], 
                                             particle[1], 
                                             particle[2], z)
