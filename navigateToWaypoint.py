@@ -124,7 +124,7 @@ def navigateToWaypoint(X, Y):
                 prob = calculate_likelihood(particle[0], 
                                             particle[1], 
                                             particle[2], z)
-                print("105: ", prob)
+                # print("105: ", prob)
                 particle[3] *= prob
 
             # normalize
