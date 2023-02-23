@@ -10,6 +10,7 @@ from particleDataStructures import Map, Canvas
 
 BP = brickpi3.BrickPi3()
 
+nn = 0
 def go(x,y):
     pass
 
@@ -113,7 +114,7 @@ def navigateToWaypoint(X, Y):
 
             global nn
             nn = 0
-            
+
             for particle in particles:
                 current_g_sigma = g_sigma * (alpha / (-math.pi/2))
                 g = random.gauss(0, current_g_sigma)
@@ -198,7 +199,6 @@ def navigateToWaypoint(X, Y):
         distance = math.sqrt(dx**2 + dy**2)
         particles = resampling(particles)
 
-nn = 0
 def calculate_likelihood(x, y, theta, z):
     global nn
     # theta = -theta
