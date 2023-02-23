@@ -87,7 +87,7 @@ def navigateToWaypoint(X, Y):
         robot_position[2] %= 2*math.pi
         if robot_position[2] > math.pi:
             robot_position[2] -= 2*math.pi
-        beta = -(alpha - robot_position[2])
+        beta = (alpha - robot_position[2])
         # print(beta * 180 / math.pi)
         print("beta: ", beta,'dy:', dy,'dx:', dx, 'alpha:',alpha)
         if abs(beta) >= 1 * math.pi/180:
