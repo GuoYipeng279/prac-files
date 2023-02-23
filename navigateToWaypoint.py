@@ -126,6 +126,7 @@ def navigateToWaypoint(X, Y):
             for particle in particles:
                 degree += particle[2] * particle[3]
             robot_position[2] = degree
+            print('robot_position:',robot_position)
             my_canvas.drawParticles(particles)
             particles = resampling(particles)
         time.sleep(2)
